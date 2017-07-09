@@ -1,0 +1,43 @@
+{
+  "name": "waffle-map-mesh-calculator-basic",
+  "version": "1.0.0",
+  "description": "The mesh calculator.It conforms to the standard rigional mesh.",
+  "main": "lib/meshCalculator.js",
+  "repository":{
+    "type": "git",
+    "url": "https://github.com/dorayakikun/waffle-map-mesh-calculator-basic.git"
+  },
+  "scripts": {
+    "build": "babel src -d lib",
+    "prepack": "npm run build && for js in src/*.js; do cp $js lib/${js##*/}.flow; done",
+    "flow": "flow",
+    "test": "nyc ava"
+  },
+  "keywords": ["map", "mesh", "waffle-map"],
+  "author": "dorayakikun <amakunai.dorayaki@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "ava": "^0.20.0",
+    "babel-cli": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-plugin-transform-object-rest-spread": "^6.23.0",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-latest": "^6.24.1",
+    "eslint": "^3.19.0",
+    "eslint-config-prettier": "^2.1.1",
+    "eslint-plugin-flowtype": "^2.34.0",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-prettier": "^2.1.1",
+    "flow-bin": "^0.48.0",
+    "nyc": "^11.0.3",
+    "prettier": "^1.4.4"
+  },
+  "ava": {
+    "babel": {
+      "babelrc": true
+    },
+    "require": [
+      "babel-register"
+    ]
+  }
+}

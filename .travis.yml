@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - "stable"
+env:
+  CODECLIMATE_REPO_TOKEN: 386c40bb4bbd6db04800251143b35c11f6e314259c906a3819c34febffaea9b8
+after_success:
+  - './node_modules/.bin/nyc report --reporter=lcov'
+  - npm install -g codeclimate-test-reporter
+  - codeclimate-test-reporter < coverage/lcov.info
