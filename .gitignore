@@ -59,6 +59,3 @@ typings/
 
 # WebStrom cache directory
 .idea
-
-# Distribution JavaScript
-lib
