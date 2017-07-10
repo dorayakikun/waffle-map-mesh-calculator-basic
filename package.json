@@ -3,6 +3,9 @@
   "version": "1.0.1",
   "description": "The mesh calculator.It conforms to the standard rigional mesh.",
   "main": "lib/meshCalculator.js",
+  "files": [
+    "lib"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/dorayakikun/waffle-map-mesh-calculator-basic.git"
