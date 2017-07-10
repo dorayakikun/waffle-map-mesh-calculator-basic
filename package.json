@@ -1,6 +1,6 @@
 {
   "name": "waffle-map-mesh-calculator-basic",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "The mesh calculator.It conforms to the standard rigional mesh.",
   "main": "lib/meshCalculator.js",
   "files": [
