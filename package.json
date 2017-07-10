@@ -12,7 +12,7 @@
   },
   "scripts": {
     "build": "babel src -d lib",
-    "prepack": "npm run build && for js in src/*.js; do cp $js lib/${js##*/}.flow; done",
+    "prepack": "npm run build && flow gen-flow-files src --out-dir lib",
     "flow": "flow",
     "test": "nyc ava"
   },
