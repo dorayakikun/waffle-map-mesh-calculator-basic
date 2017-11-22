@@ -123,7 +123,7 @@ Actual mesh code is ${mesh}.`
 
   return {
     lat:
-    (firstMeshLat + (secondMeshLat + thirdMeshLat / 10) / 8) / 1.5 + 1 / 240,
+      (firstMeshLat + (secondMeshLat + thirdMeshLat / 10) / 8) / 1.5 + 1 / 240,
     lng: firstMeshLng + (secondMeshLng + thirdMeshLng / 10) / 8 + 100 + 1 / 160
   }
 }
@@ -322,4 +322,41 @@ function latLngToThirdMesh(lat: number, lng: number): string {
   const meshLat = `${parseInt((secondMeshLat - parseInt(secondMeshLat)) * 10)}`
   const meshLng = `${parseInt((secondMeshLng - parseInt(secondMeshLng)) * 10)}`
   return `${latLngToSecondMesh(lat, lng)}-${meshLat}${meshLng}`
+}
+
+export function panMeshByOffset(
+  mesh: string,
+  offsetX: number,
+  offsetY: number,
+  scale: number
+): string {
+  switch (scale) {
+    case 1:
+      return panFirstMeshByOffset(mesh, offsetX, offsetY)
+    case 2:
+      throw new Error('Not Implementeded Error')
+    case 3:
+      throw new Error('Not Implementeded Error')
+    default:
+      throw new Error('Not Implementeded Error')
+  }
+}
+
+function panFirstMeshByOffset(
+  mesh: string,
+  offsetX: number,
+  offsetY: number
+): string {
+  if (!mesh.match(/\d{4}/)) {
+    throw new Error(
+      `Invalid mesh code found.
+Only numbers are acceptable.
+Actual mesh code is ${mesh}.`
+    )
+  }
+
+  const meshLat = parseInt(mesh.substr(0, 2))
+  const meshLng = parseInt(mesh.substr(2))
+
+  return `${meshLat + offsetY}${meshLng + offsetX}`
 }

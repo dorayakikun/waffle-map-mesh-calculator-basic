@@ -1,6 +1,6 @@
 // @flow
 import test from 'ava'
-import { meshToLatLng, latLngToMesh, meshToBounds } from '../src/meshCalculator'
+import { meshToLatLng, latLngToMesh, meshToBounds, panMeshByOffset } from '../src/meshCalculator'
 
 // ---
 // meshToLatLng
@@ -294,4 +294,11 @@ test('Should throw an error when LatLng is { lat: 35.6638, lng: 139.71805 }, sca
 The scale range is [1-3].
 The actual scale is 4.`
   )
+})
+
+// ---
+// panMeshByOffset
+// ---
+test('Should pan 5339 to 6334', t => {
+  t.is(panMeshByOffset('5339', -5, 10, 1), '6334')
 })
