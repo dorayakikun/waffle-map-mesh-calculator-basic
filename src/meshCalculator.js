@@ -367,15 +367,16 @@ function latLngToThirdMesh(lat: number, lng: number): string {
 export function panMeshByOffset(
   mesh: string,
   offsetX: number,
-  offsetY: number,
-  scale: number
+  offsetY: number
 ): string {
-  switch (scale) {
-    case 1:
-      return panFirstMeshByOffset(mesh, offsetX, offsetY)
-    case 2:
+  const newMesh = mesh.replace(/-/g, '')
+  const len = newMesh.length
+  switch (len) {
+    case 4:
+      return panFirstMeshByOffset(newMesh, offsetX, offsetY)
+    case 6:
       throw new Error('Not Implementeded Error')
-    case 3:
+    case 8:
       throw new Error('Not Implementeded Error')
     default:
       throw new Error('Not Implementeded Error')
