@@ -1,6 +1,29 @@
 // @flow
 import test from 'ava'
-import { meshToLatLng, latLngToMesh, meshToBounds, panMeshByOffset } from '../src/meshCalculator'
+import { getScaleWith, meshToLatLng, latLngToMesh, meshToBounds, panMeshByOffset } from '../src/meshCalculator'
+
+// ---
+// getScaleWith
+// ---
+test('Should get the scale corresponding to the zoom.', t => {
+  t.is(getScaleWith(19), 3)
+  t.is(getScaleWith(18), 3)
+  t.is(getScaleWith(17), 3)
+  t.is(getScaleWith(16), 3)
+  t.is(getScaleWith(15), 3)
+  t.is(getScaleWith(14), 3)
+
+  t.is(getScaleWith(13), 2)
+  t.is(getScaleWith(12), 2)
+  t.is(getScaleWith(11), 2)
+
+  t.is(getScaleWith(10), 1)
+  t.is(getScaleWith(9), 1)
+  t.is(getScaleWith(8), 1)
+  t.is(getScaleWith(7), 1)
+  t.is(getScaleWith(6), 1)
+  t.is(getScaleWith(5), 1)
+})
 
 // ---
 // meshToLatLng

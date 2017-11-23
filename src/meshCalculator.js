@@ -46,6 +46,8 @@ export function getScaleWith(zoom: number): number {
       return 1
     case 6:
       return 1
+    default:
+      return 1
   }
 }
 
