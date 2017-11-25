@@ -1,6 +1,12 @@
 // @flow
 import test from 'ava'
-import { getScaleWith, meshToLatLng, latLngToMesh, meshToBounds, panMeshByOffset } from '../src/meshCalculator'
+import {
+  getScaleWith,
+  meshToLatLng,
+  latLngToMesh,
+  meshToBounds,
+  panMeshByOffset
+} from '../src/meshCalculator'
 
 // ---
 // getScaleWith
@@ -324,4 +330,12 @@ The actual scale is 4.`
 // ---
 test('Should pan 5339 to 6334', t => {
   t.is(panMeshByOffset('5339', -5, 10), '6334')
+})
+
+test('Should pan 533900 to 533912', t => {
+  t.is(panMeshByOffset('533900', 2, 1), '533912')
+})
+
+test('Should pan 53390000 to 53390012', t => {
+  t.is(panMeshByOffset('53390012', 2, 1), '6334')
 })
