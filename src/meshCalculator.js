@@ -401,3 +401,34 @@ Actual mesh code is ${mesh}.`
 
   return `${meshLat + offsetY}${meshLng + offsetX}`
 }
+
+function panSecondMeshByOffset(
+  mesh: string,
+  offsetX: number,
+  offsetY: number
+): string {
+  if (!mesh.match(/\d{6}/)) {
+    throw new Error(
+      `Invalid mesh code found.
+Only numbers are acceptable.
+Actual mesh code is ${mesh}.`
+    )
+  }
+
+  return ''
+}
+
+function panThirdMeshByOffset(
+  mesh: string,
+  offsetX: number,
+  offsetY: number
+): string {
+  if (!mesh.match(/\d{8}/)) {
+    throw new Error(
+      `Invalid mesh code found.
+Only numbers are acceptable.
+Actual mesh code is ${mesh}.`
+    )
+  }
+  return ''
+}
