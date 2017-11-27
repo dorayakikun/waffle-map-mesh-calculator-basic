@@ -332,6 +332,19 @@ test('Should pan 5339 to 6334', t => {
   t.is(panMeshByOffset('5339', -5, 10), '6334')
 })
 
+test('Should throw error when mesh is 533', t => {
+  const mesh = '533'
+  const error = t.throws(() => {
+    panMeshByOffset(mesh, -5, 0)
+  })
+  t.is(
+    error.message,
+    `Invalid mesh code found.
+The length of the mesh code is 4, 6, or 8.
+The actual length is ${mesh.length}, the mesh code is ${mesh}.`
+  )
+})
+
 test('Should pan 533900 to 533912', t => {
   t.is(panMeshByOffset('533900', 2, 1), '533912')
 })
