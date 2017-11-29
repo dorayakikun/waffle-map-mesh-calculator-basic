@@ -345,10 +345,49 @@ The actual length is ${mesh.length}, the mesh code is ${mesh}.`
   )
 })
 
+test('Should throw error when mesh is 533a', t => {
+  const mesh = '533a'
+  const error = t.throws(() => {
+    panMeshByOffset(mesh, -5, 0)
+  })
+  t.is(
+    error.message,
+    `Invalid mesh code found.
+Only numbers are acceptable.
+Actual mesh code is ${mesh}.`
+  )
+})
+
 test('Should pan 533900 to 533912', t => {
   t.is(panMeshByOffset('533900', 2, 1), '533912')
 })
 
+test('Should throw error when mesh is 53390a', t => {
+  const mesh = '53390a'
+  const error = t.throws(() => {
+    panMeshByOffset(mesh, -5, 0)
+  })
+  t.is(
+    error.message,
+    `Invalid mesh code found.
+Only numbers are acceptable.
+Actual mesh code is ${mesh}.`
+  )
+})
+
 test('Should pan 53390000 to 53390012', t => {
   t.is(panMeshByOffset('53390012', 2, 1), '6334')
+})
+
+test('Should throw error when mesh is 5339000a', t => {
+  const mesh = '5339000a'
+  const error = t.throws(() => {
+    panMeshByOffset(mesh, -5, 0)
+  })
+  t.is(
+    error.message,
+    `Invalid mesh code found.
+Only numbers are acceptable.
+Actual mesh code is ${mesh}.`
+  )
 })
