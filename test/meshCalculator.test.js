@@ -1,6 +1,35 @@
 // @flow
 import test from 'ava'
-import { meshToLatLng, latLngToMesh, meshToBounds } from '../src/meshCalculator'
+import {
+  getScaleWith,
+  meshToLatLng,
+  latLngToMesh,
+  meshToBounds,
+  panMeshByOffset
+} from '../src/meshCalculator'
+
+// ---
+// getScaleWith
+// ---
+test('Should get the scale corresponding to the zoom.', t => {
+  t.is(getScaleWith(19), 3)
+  t.is(getScaleWith(18), 3)
+  t.is(getScaleWith(17), 3)
+  t.is(getScaleWith(16), 3)
+  t.is(getScaleWith(15), 3)
+  t.is(getScaleWith(14), 3)
+
+  t.is(getScaleWith(13), 2)
+  t.is(getScaleWith(12), 2)
+  t.is(getScaleWith(11), 2)
+
+  t.is(getScaleWith(10), 1)
+  t.is(getScaleWith(9), 1)
+  t.is(getScaleWith(8), 1)
+  t.is(getScaleWith(7), 1)
+  t.is(getScaleWith(6), 1)
+  t.is(getScaleWith(5), 1)
+})
 
 // ---
 // meshToLatLng
@@ -293,5 +322,72 @@ test('Should throw an error when LatLng is { lat: 35.6638, lng: 139.71805 }, sca
     `Illegal scale found.
 The scale range is [1-3].
 The actual scale is 4.`
+  )
+})
+
+// ---
+// panMeshByOffset
+// ---
+test('Should pan 5339 to 6334', t => {
+  t.is(panMeshByOffset('5339', -5, 10), '6334')
+})
+
+test('Should throw error when mesh is 533', t => {
+  const mesh = '533'
+  const error = t.throws(() => {
+    panMeshByOffset(mesh, -5, 0)
+  })
+  t.is(
+    error.message,
+    `Invalid mesh code found.
+The length of the mesh code is 4, 6, or 8.
+The actual length is ${mesh.length}, the mesh code is ${mesh}.`
+  )
+})
+
+test('Should throw error when mesh is 533a', t => {
+  const mesh = '533a'
+  const error = t.throws(() => {
+    panMeshByOffset(mesh, -5, 0)
+  })
+  t.is(
+    error.message,
+    `Invalid mesh code found.
+Only numbers are acceptable.
+Actual mesh code is ${mesh}.`
+  )
+})
+
+test('Should pan 533900 to 533912', t => {
+  t.is(panMeshByOffset('533900', 2, 1), '533912')
+})
+
+test('Should throw error when mesh is 53390a', t => {
+  const mesh = '53390a'
+  const error = t.throws(() => {
+    panMeshByOffset(mesh, -5, 0)
+  })
+  t.is(
+    error.message,
+    `Invalid mesh code found.
+Only numbers are acceptable.
+Actual mesh code is ${mesh}.`
+  )
+})
+
+test('Should pan 53397080 to 54390100', t => {
+  t.is(panMeshByOffset('53397080', 10, 2), '54390100')
+})
+
+test('Should throw error when mesh is 5339000a', t => {
+  const mesh = '5339000a'
+  const error = t.throws(() => {
+    panMeshByOffset(mesh, -5, 0)
+  })
+  t.is(
+    error.message,
+    `Invalid mesh code found.
+Only numbers are acceptable.
+Actual mesh code is ${mesh}.`
   )
 })
