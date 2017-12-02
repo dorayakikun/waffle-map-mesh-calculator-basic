@@ -375,8 +375,8 @@ Actual mesh code is ${mesh}.`
   )
 })
 
-test('Should pan 53390000 to 53390012', t => {
-  t.is(panMeshByOffset('53390012', 2, 1), '6334')
+test('Should pan 53397080 to 54390100', t => {
+  t.is(panMeshByOffset('53397080', 10, 2), '54390100')
 })
 
 test('Should throw error when mesh is 5339000a', t => {

@@ -8,8 +8,15 @@ export type Bounds = {
   leftTop: LatLng,
   rightBottom: LatLng
 }
+type Point = {
+  value: number,
+  maxDigit: number
+}
 
 export const SCALES = [1, 2, 3]
+const FIRST_MAX_DIGIT = 999
+const SECOND_MAX_DIGIT = 7
+const THIRD_MAX_DIGIT = 9
 
 /**
  * Get the scale corresponding to zoom.
@@ -364,6 +371,21 @@ function latLngToThirdMesh(lat: number, lng: number): string {
   return `${latLngToSecondMesh(lat, lng)}-${meshLat}${meshLng}`
 }
 
+function calcNextPoints(points: Array<Point>): Array<Point> {
+  const nextPoints = [...points]
+  const last = nextPoints.length - 1
+  nextPoints[last].value++
+  for (let i = last; i > 0; i--) {
+    if (nextPoints[i].value > nextPoints[i].maxDigit) {
+      nextPoints[i].value = 0
+      nextPoints[i - 1].value++
+    } else {
+      break
+    }
+  }
+  return nextPoints
+}
+
 export function panMeshByOffset(
   mesh: string,
   offsetX: number,
@@ -375,11 +397,15 @@ export function panMeshByOffset(
     case 4:
       return panFirstMeshByOffset(newMesh, offsetX, offsetY)
     case 6:
-      throw new Error('Not Implementeded Error')
+      return panSecondMeshByOffset(newMesh, offsetX, offsetY)
     case 8:
-      throw new Error('Not Implementeded Error')
+      return panThirdMeshByOffset(newMesh, offsetX, offsetY)
     default:
-      throw new Error('Not Implementeded Error')
+      throw new Error(
+        `Invalid mesh code found.
+The length of the mesh code is 4, 6, or 8.
+The actual length is ${newMesh.length}, the mesh code is ${newMesh}.`
+      )
   }
 }
 
@@ -415,7 +441,28 @@ Actual mesh code is ${mesh}.`
     )
   }
 
-  return ''
+  const y1 = parseInt(mesh.substr(0, 2))
+  const x1 = parseInt(mesh.substr(2, 2))
+  const y2 = parseInt(mesh.substr(4, 1))
+  const x2 = parseInt(mesh.substr(5))
+
+  let ys = [
+    { value: y1, maxDigit: FIRST_MAX_DIGIT },
+    { value: y2, maxDigit: SECOND_MAX_DIGIT }
+  ]
+  Array(offsetY).fill().forEach(() => {
+    ys = calcNextPoints(ys)
+  })
+
+  let xs = [
+    { value: x1, maxDigit: FIRST_MAX_DIGIT },
+    { value: x2, maxDigit: SECOND_MAX_DIGIT }
+  ]
+  Array(offsetX).fill().forEach(() => {
+    xs = calcNextPoints(xs)
+  })
+
+  return `${ys[0].value}${xs[0].value}${ys[1].value}${xs[1].value}`
 }
 
 function panThirdMeshByOffset(
@@ -430,5 +477,32 @@ Only numbers are acceptable.
 Actual mesh code is ${mesh}.`
     )
   }
-  return ''
+
+  const y1 = parseInt(mesh.substr(0, 2))
+  const x1 = parseInt(mesh.substr(2, 2))
+  const y2 = parseInt(mesh.substr(4, 1))
+  const x2 = parseInt(mesh.substr(5, 1))
+  const y3 = parseInt(mesh.substr(6, 1))
+  const x3 = parseInt(mesh.substr(7))
+
+  let ys: Array<Point> = [
+    { value: y1, maxDigit: FIRST_MAX_DIGIT },
+    { value: y2, maxDigit: SECOND_MAX_DIGIT },
+    { value: y3, maxDigit: THIRD_MAX_DIGIT }
+  ]
+  Array(offsetY).fill().forEach(() => {
+    ys = calcNextPoints(ys)
+  })
+
+  let xs: Array<Point> = [
+    { value: x1, maxDigit: FIRST_MAX_DIGIT },
+    { value: x2, maxDigit: SECOND_MAX_DIGIT },
+    { value: x3, maxDigit: THIRD_MAX_DIGIT }
+  ]
+  Array(offsetX).fill().forEach(() => {
+    xs = calcNextPoints(xs)
+  })
+
+  return `${ys[0].value}${xs[0].value}${ys[1].value}${xs[1].value}${ys[2]
+    .value}${xs[2].value}`
 }
