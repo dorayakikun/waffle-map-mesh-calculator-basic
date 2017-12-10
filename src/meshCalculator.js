@@ -14,7 +14,7 @@ type Point = {
 }
 
 export const SCALES = [1, 2, 3]
-const FIRST_MAX_DIGIT = 999
+const FIRST_MAX_DIGIT = 99
 const SECOND_MAX_DIGIT = 7
 const THIRD_MAX_DIGIT = 9
 
@@ -386,6 +386,21 @@ function calcNextPoints(points: Array<Point>): Array<Point> {
   return nextPoints
 }
 
+function calcPrevPoints(points: Array<Point>): Array<Point> {
+  const prevPoints = [...points]
+  const last = prevPoints.length - 1
+  prevPoints[last].value--
+  for (let i = last; i > 0; i--) {
+    if (prevPoints[i].value < 0) {
+      prevPoints[i].value = prevPoints[i].maxDigit
+      prevPoints[i - 1].value--
+    } else {
+      break
+    }
+  }
+  return prevPoints
+}
+
 export function panMeshByOffset(
   mesh: string,
   offsetX: number,
@@ -446,20 +461,22 @@ Actual mesh code is ${mesh}.`
   const y2 = parseInt(mesh.substr(4, 1))
   const x2 = parseInt(mesh.substr(5))
 
+  const calcOffsetY = offsetY > 0 ? calcNextPoints : calcPrevPoints
   let ys = [
     { value: y1, maxDigit: FIRST_MAX_DIGIT },
     { value: y2, maxDigit: SECOND_MAX_DIGIT }
   ]
-  Array(offsetY).fill().forEach(() => {
-    ys = calcNextPoints(ys)
+  Array(Math.abs(offsetY)).fill().forEach(() => {
+    ys = calcOffsetY(ys)
   })
 
+  const calcOffsetX = offsetX > 0 ? calcNextPoints : calcPrevPoints
   let xs = [
     { value: x1, maxDigit: FIRST_MAX_DIGIT },
     { value: x2, maxDigit: SECOND_MAX_DIGIT }
   ]
-  Array(offsetX).fill().forEach(() => {
-    xs = calcNextPoints(xs)
+  Array(Math.abs(offsetX)).fill().forEach(() => {
+    xs = calcOffsetX(xs)
   })
 
   return `${ys[0].value}${xs[0].value}${ys[1].value}${xs[1].value}`
@@ -485,22 +502,24 @@ Actual mesh code is ${mesh}.`
   const y3 = parseInt(mesh.substr(6, 1))
   const x3 = parseInt(mesh.substr(7))
 
+  const calcOffsetY = offsetY > 0 ? calcNextPoints : calcPrevPoints
   let ys: Array<Point> = [
     { value: y1, maxDigit: FIRST_MAX_DIGIT },
     { value: y2, maxDigit: SECOND_MAX_DIGIT },
     { value: y3, maxDigit: THIRD_MAX_DIGIT }
   ]
-  Array(offsetY).fill().forEach(() => {
-    ys = calcNextPoints(ys)
+  Array(Math.abs(offsetY)).fill().forEach(() => {
+    ys = calcOffsetY(ys)
   })
 
+  const calcOffsetX = offsetX > 0 ? calcNextPoints : calcPrevPoints
   let xs: Array<Point> = [
     { value: x1, maxDigit: FIRST_MAX_DIGIT },
     { value: x2, maxDigit: SECOND_MAX_DIGIT },
     { value: x3, maxDigit: THIRD_MAX_DIGIT }
   ]
-  Array(offsetX).fill().forEach(() => {
-    xs = calcNextPoints(xs)
+  Array(Math.abs(offsetX)).fill().forEach(() => {
+    xs = calcOffsetX(xs)
   })
 
   return `${ys[0].value}${xs[0].value}${ys[1].value}${xs[1].value}${ys[2]
