@@ -362,6 +362,14 @@ test('Should pan 533900 to 533912', t => {
   t.is(panMeshByOffset('533900', 2, 1), '533912')
 })
 
+test('Should pan 533900 to 533900', t => {
+  t.is(panMeshByOffset('533900', 0, 0), '533900')
+})
+
+test('Should pan 533900 to 533912', t => {
+  t.is(panMeshByOffset('533900', 2, -10), '513962')
+})
+
 test('Should throw error when mesh is 53390a', t => {
   const mesh = '53390a'
   const error = t.throws(() => {
@@ -377,6 +385,14 @@ Actual mesh code is ${mesh}.`
 
 test('Should pan 53397080 to 54390100', t => {
   t.is(panMeshByOffset('53397080', 10, 2), '54390100')
+})
+
+test('Should pan 53397080 to 53397080', t => {
+  t.is(panMeshByOffset('53397080', 0, 0), '53397080')
+})
+
+test('Should pan 53397080 to 54360000', t => {
+  t.is(panMeshByOffset('53397080', -20, 2), '54380600')
 })
 
 test('Should throw error when mesh is 5339000a', t => {
