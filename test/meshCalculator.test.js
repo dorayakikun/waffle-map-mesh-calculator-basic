@@ -313,6 +313,10 @@ test('{ lat: 35.6638, lng: 139.71805, scale: 3 } to equal 5339-35-97', t => {
   t.is(latLngToMesh(35.6638, 139.71805, 3), '5339-35-97')
 })
 
+test('{ lat: 35.000000000000014 lng: 1139.00000000000003, scale: 3 } to equal 5239-40-00', t => {
+  t.is(latLngToMesh(35.000000000000014, 139.00000000000003, 3), '5239-40-00')
+})
+
 test('Should throw an error when LatLng is { lat: 35.6638, lng: 139.71805 }, scale is 4', t => {
   const error = t.throws(() => {
     latLngToMesh(35.6638, 139.71805, 4)
