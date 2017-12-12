@@ -97,8 +97,8 @@ Only numbers are acceptable.
 Actual mesh code is ${mesh}.`
     )
   }
-  const meshLat = Math.trunc(mesh.substr(0, 2))
-  const meshLng = Math.trunc(mesh.substr(2))
+  const meshLat = parseInt(mesh.substr(0, 2))
+  const meshLng = parseInt(mesh.substr(2))
   return {
     lat: meshLat / 1.5 + 1 / 3,
     lng: meshLng + 100 + 1 / 2
@@ -119,10 +119,10 @@ Only numbers are acceptable.
 Actual mesh code is ${mesh}.`
     )
   }
-  const firstMeshLat = Math.trunc(mesh.substr(0, 2))
-  const firstMeshLng = Math.trunc(mesh.substr(2, 2))
-  const secondMeshLat = Math.trunc(mesh.substr(4, 1))
-  const secondMeshLng = Math.trunc(mesh.substr(5))
+  const firstMeshLat = parseInt(mesh.substr(0, 2))
+  const firstMeshLng = parseInt(mesh.substr(2, 2))
+  const secondMeshLat = parseInt(mesh.substr(4, 1))
+  const secondMeshLng = parseInt(mesh.substr(5))
 
   if (secondMeshLat > 7 || secondMeshLng > 7) {
     throw new Error(
@@ -153,12 +153,12 @@ Actual mesh code is ${mesh}.`
     )
   }
 
-  const firstMeshLat = Math.trunc(mesh.substr(0, 2))
-  const firstMeshLng = Math.trunc(mesh.substr(2, 2))
-  const secondMeshLat = Math.trunc(mesh.substr(4, 1))
-  const secondMeshLng = Math.trunc(mesh.substr(5, 1))
-  const thirdMeshLat = Math.trunc(mesh.substr(6, 1))
-  const thirdMeshLng = Math.trunc(mesh.substr(7))
+  const firstMeshLat = parseInt(mesh.substr(0, 2))
+  const firstMeshLng = parseInt(mesh.substr(2, 2))
+  const secondMeshLat = parseInt(mesh.substr(4, 1))
+  const secondMeshLng = parseInt(mesh.substr(5, 1))
+  const thirdMeshLat = parseInt(mesh.substr(6, 1))
+  const thirdMeshLng = parseInt(mesh.substr(7))
 
   if (secondMeshLat > 7 || secondMeshLng > 7) {
     throw new Error(
@@ -214,8 +214,8 @@ Actual mesh code is ${mesh}.`
     )
   }
 
-  const lat = Math.trunc(mesh.substr(0, 2))
-  const lng = Math.trunc(mesh.substr(2, 2))
+  const lat = parseInt(mesh.substr(0, 2))
+  const lng = parseInt(mesh.substr(2, 2))
   const originLat = lat / 1.5
   const originLng = lng + 100
 
@@ -240,10 +240,10 @@ Actual mesh code is ${mesh}.`
     )
   }
 
-  const firstLat = Math.trunc(mesh.substr(0, 2))
-  const firstLng = Math.trunc(mesh.substr(2, 2))
-  const secondMeshLat = Math.trunc(mesh.substr(4, 1))
-  const secondMeshLng = Math.trunc(mesh.substr(5))
+  const firstLat = parseInt(mesh.substr(0, 2))
+  const firstLng = parseInt(mesh.substr(2, 2))
+  const secondMeshLat = parseInt(mesh.substr(4, 1))
+  const secondMeshLng = parseInt(mesh.substr(5))
 
   if (secondMeshLat > 7 || secondMeshLng > 7) {
     throw new Error(
@@ -277,12 +277,12 @@ Actual mesh code is ${mesh}.`
     )
   }
 
-  const firstLat = Math.trunc(mesh.substr(0, 2))
-  const firstLng = Math.trunc(mesh.substr(2, 2))
-  const secondMeshLat = Math.trunc(mesh.substr(4, 1))
-  const secondMeshLng = Math.trunc(mesh.substr(5, 1))
-  const thirdMeshLat = Math.trunc(mesh.substr(6, 1))
-  const thirdMeshLng = Math.trunc(mesh.substr(7))
+  const firstLat = parseInt(mesh.substr(0, 2))
+  const firstLng = parseInt(mesh.substr(2, 2))
+  const secondMeshLat = parseInt(mesh.substr(4, 1))
+  const secondMeshLng = parseInt(mesh.substr(5, 1))
+  const thirdMeshLat = parseInt(mesh.substr(6, 1))
+  const thirdMeshLng = parseInt(mesh.substr(7))
 
   if (secondMeshLat > 7 || secondMeshLng > 7) {
     throw new Error(
@@ -437,8 +437,8 @@ Actual mesh code is ${mesh}.`
     )
   }
 
-  const meshLat = Math.trunc(mesh.substr(0, 2))
-  const meshLng = Math.trunc(mesh.substr(2))
+  const meshLat = parseInt(mesh.substr(0, 2))
+  const meshLng = parseInt(mesh.substr(2))
 
   return `${meshLat + offsetY}${meshLng + offsetX}`
 }
@@ -456,10 +456,10 @@ Actual mesh code is ${mesh}.`
     )
   }
 
-  const y1 = Math.trunc(mesh.substr(0, 2))
-  const x1 = Math.trunc(mesh.substr(2, 2))
-  const y2 = Math.trunc(mesh.substr(4, 1))
-  const x2 = Math.trunc(mesh.substr(5))
+  const y1 = parseInt(mesh.substr(0, 2))
+  const x1 = parseInt(mesh.substr(2, 2))
+  const y2 = parseInt(mesh.substr(4, 1))
+  const x2 = parseInt(mesh.substr(5))
 
   const calcOffsetY = offsetY > 0 ? calcNextPoints : calcPrevPoints
   let ys = [
@@ -495,12 +495,12 @@ Actual mesh code is ${mesh}.`
     )
   }
 
-  const y1 = Math.trunc(mesh.substr(0, 2))
-  const x1 = Math.trunc(mesh.substr(2, 2))
-  const y2 = Math.trunc(mesh.substr(4, 1))
-  const x2 = Math.trunc(mesh.substr(5, 1))
-  const y3 = Math.trunc(mesh.substr(6, 1))
-  const x3 = Math.trunc(mesh.substr(7))
+  const y1 = parseInt(mesh.substr(0, 2))
+  const x1 = parseInt(mesh.substr(2, 2))
+  const y2 = parseInt(mesh.substr(4, 1))
+  const x2 = parseInt(mesh.substr(5, 1))
+  const y3 = parseInt(mesh.substr(6, 1))
+  const x3 = parseInt(mesh.substr(7))
 
   const calcOffsetY = offsetY > 0 ? calcNextPoints : calcPrevPoints
   let ys: Array<Point> = [
