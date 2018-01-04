@@ -43,38 +43,13 @@ export const THIRD_MAX_DIGIT = 9
  * @param zoom zoom
  * @returns {number} scale
  */
-export function getScaleWith(zoom: number): number {
-  switch (zoom) {
-    case 19:
-      return 3
-    case 18:
-      return 3
-    case 17:
-      return 3
-    case 16:
-      return 3
-    case 15:
-      return 3
-    case 14:
-      return 3
-    case 13:
-      return 2
-    case 12:
-      return 2
-    case 11:
-      return 2
-    case 10:
-      return 1
-    case 9:
-      return 1
-    case 8:
-      return 1
-    case 7:
-      return 1
-    case 6:
-      return 1
-    default:
-      return 1
+export const getScaleWith = (zoom: number): number => {
+  if (zoom <= 19 && zoom >= 14) {
+    return 3
+  } else if (zoom <= 13 && zoom >= 11) {
+    return 2
+  } else {
+    return 1
   }
 }
 
@@ -84,7 +59,7 @@ export function getScaleWith(zoom: number): number {
  * @param mesh mesh
  * @returns {LatLng} latitude and longitude
  */
-export function meshToLatLng(mesh: string): LatLng {
+export const meshToLatLng = (mesh: string): LatLng => {
   const newMesh = mesh.replace(/-/g, '')
   const len = newMesh.length
   switch (len) {
@@ -108,7 +83,7 @@ The actual length is ${newMesh.length}, the mesh code is ${newMesh}.`
  * @param mesh mesh
  * @returns {Bounds} bounds
  */
-export function meshToBounds(mesh: string): Bounds {
+export const meshToBounds = (mesh: string): Bounds => {
   const newMesh = mesh.replace(/-/g, '')
 
   const len = newMesh.length
@@ -136,7 +111,11 @@ The actual length is ${newMesh.length}, the mesh code is ${newMesh}.`
  * @param scale scale
  * @returns {string} mesh.
  */
-export function latLngToMesh(lat: number, lng: number, scale: number): string {
+export const latLngToMesh = (
+  lat: number,
+  lng: number,
+  scale: number
+): string => {
   switch (scale) {
     case 1:
       return latLngToFirstMesh(lat, lng)
@@ -183,11 +162,11 @@ export const calcPrevPoints = (points: Array<Point>): Array<Point> => {
   return prevPoints
 }
 
-export function panMeshByOffset(
+export const panMeshByOffset = (
   mesh: string,
   offsetX: number,
   offsetY: number
-): string {
+): string => {
   const newMesh = mesh.replace(/-/g, '')
   const len = newMesh.length
   switch (len) {
