@@ -5,7 +5,7 @@ import {
   meshToLatLng,
   latLngToMesh,
   meshToBounds,
-  panMeshByOffset
+  panMeshByOffset,
 } from '../src/meshCalculator'
 
 // ---
@@ -52,7 +52,7 @@ test('Should convert mesh 5339 to LatLng', t => {
   const mesh = '5339'
   const expected = {
     lat: 53 / 1.5 + 1 / 3,
-    lng: 39 + 100 + 1 / 2
+    lng: 39 + 100 + 1 / 2,
   }
   t.deepEqual(meshToLatLng(mesh), expected)
 })
@@ -75,7 +75,7 @@ test('Should convert mesh 5339-35 to LatLng', t => {
   const mesh = '5339-35'
   const expected = {
     lat: (53 + 3 / 8) / 1.5 + 1 / 24,
-    lng: 39 + 5 / 8 + 100 + 1 / 16
+    lng: 39 + 5 / 8 + 100 + 1 / 16,
   }
   t.deepEqual(meshToLatLng(mesh), expected)
 })
@@ -111,7 +111,7 @@ test('Should convert mesh 5339-35-97 to LatLng', t => {
   const mesh = '5339-35-97'
   const expected = {
     lat: (53 + (3 + 9 / 10) / 8) / 1.5 + 1 / 240,
-    lng: 39 + (5 + 7 / 10) / 8 + 100 + 1 / 160
+    lng: 39 + (5 + 7 / 10) / 8 + 100 + 1 / 160,
   }
   t.deepEqual(meshToLatLng(mesh), expected)
 })
@@ -176,12 +176,12 @@ test('Should convert mesh 5339 to bounds', t => {
   const expected = {
     leftTop: {
       lat: 53 / 1.5 + 2 / 3,
-      lng: 39 + 100
+      lng: 39 + 100,
     },
     rightBottom: {
       lat: 53 / 1.5,
-      lng: 39 + 100 + 1
-    }
+      lng: 39 + 100 + 1,
+    },
   }
   t.deepEqual(meshToBounds('5339'), expected)
 })
@@ -206,12 +206,12 @@ test('Should convert mesh 5339-35 to bounds', t => {
   const expected = {
     leftTop: {
       lat: lat + 1 / 12,
-      lng: lng
+      lng: lng,
     },
     rightBottom: {
       lat: lat,
-      lng: lng + 1 / 8
-    }
+      lng: lng + 1 / 8,
+    },
   }
   t.deepEqual(meshToBounds(mesh), expected)
 })
@@ -249,12 +249,12 @@ test('Should convert mesh 5339-35-97 to bounds', t => {
   const expected = {
     leftTop: {
       lat: lat + 1 / 120,
-      lng: lng
+      lng: lng,
     },
     rightBottom: {
       lat: lat,
-      lng: lng + 1 / 80
-    }
+      lng: lng + 1 / 80,
+    },
   }
   t.deepEqual(meshToBounds(mesh), expected)
 })

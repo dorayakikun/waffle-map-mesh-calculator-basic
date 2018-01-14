@@ -13,7 +13,7 @@ Actual mesh code is ${meshCode}.`
   const x1 = parseInt(meshCode.substr(2))
   return {
     lat: y1 / 1.5 + 1 / 3,
-    lng: x1 + 100 + 1 / 2
+    lng: x1 + 100 + 1 / 2,
   }
 }
 
@@ -33,7 +33,7 @@ Actual mesh code is ${meshCode}.`
 
   return {
     leftTop: { lat: cy + 2 / 3, lng: cx },
-    rightBottom: { lat: cy, lng: cx + 1 }
+    rightBottom: { lat: cy, lng: cx + 1 },
   }
 }
 
