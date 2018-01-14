@@ -3,34 +3,34 @@ import {
   meshToLatLng as firstMeshToLatLng,
   meshToBounds as firstMeshToBounds,
   latLngToMesh as latLngToFirstMesh,
-  panMeshByOffset as panFirstMeshByOffset
+  panMeshByOffset as panFirstMeshByOffset,
 } from './firstMeshCalculator'
 
 import {
   meshToLatLng as secondMeshToLatLng,
   meshToBounds as secondMeshToBounds,
   latLngToMesh as latLngToSecondMesh,
-  panMeshByOffset as panSecondMeshByOffset
+  panMeshByOffset as panSecondMeshByOffset,
 } from './secondMeshCalculator'
 
 import {
   meshToLatLng as thirdMeshToLatLng,
   meshToBounds as thirdMeshToBounds,
   latLngToMesh as latLngToThirdMesh,
-  panMeshByOffset as panThirdMeshByOffset
+  panMeshByOffset as panThirdMeshByOffset,
 } from './thirdMeshCalculator'
 
 export type LatLng = {
   lat: number,
-  lng: number
+  lng: number,
 }
 export type Bounds = {
   leftTop: LatLng,
-  rightBottom: LatLng
+  rightBottom: LatLng,
 }
 export type Point = {
   value: number,
-  maxDigit: number
+  maxDigit: number,
 }
 
 export const SCALES = [1, 2, 3]

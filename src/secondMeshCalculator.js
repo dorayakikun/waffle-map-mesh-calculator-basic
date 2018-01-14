@@ -4,7 +4,7 @@ import {
   FIRST_MAX_DIGIT,
   SECOND_MAX_DIGIT,
   calcNextPoints,
-  calcPrevPoints
+  calcPrevPoints,
 } from './meshCalculator'
 
 import type { Bounds, LatLng } from './meshCalculator'
@@ -32,7 +32,7 @@ Actual mesh code is ${meshCode}.`
 
   return {
     lat: (y1 + y2 / 8) / 1.5 + 1 / 24,
-    lng: x1 + x2 / 8 + 100 + 1 / 16
+    lng: x1 + x2 / 8 + 100 + 1 / 16,
   }
 }
 
@@ -63,7 +63,7 @@ Actual mesh code is ${meshCode}.`
 
   return {
     leftTop: { lat: cy + 1 / 12, lng: cx },
-    rightBottom: { lat: cy, lng: cx + 1 / 8 }
+    rightBottom: { lat: cy, lng: cx + 1 / 8 },
   }
 }
 
@@ -97,20 +97,24 @@ Actual mesh code is ${mesh}.`
   const calcOffsetY = offsetY > 0 ? calcNextPoints : calcPrevPoints
   let ys = [
     { value: y1, maxDigit: FIRST_MAX_DIGIT },
-    { value: y2, maxDigit: SECOND_MAX_DIGIT }
+    { value: y2, maxDigit: SECOND_MAX_DIGIT },
   ]
-  Array(Math.abs(offsetY)).fill().forEach(() => {
-    ys = calcOffsetY(ys)
-  })
+  Array(Math.abs(offsetY))
+    .fill()
+    .forEach(() => {
+      ys = calcOffsetY(ys)
+    })
 
   const calcOffsetX = offsetX > 0 ? calcNextPoints : calcPrevPoints
   let xs = [
     { value: x1, maxDigit: FIRST_MAX_DIGIT },
-    { value: x2, maxDigit: SECOND_MAX_DIGIT }
+    { value: x2, maxDigit: SECOND_MAX_DIGIT },
   ]
-  Array(Math.abs(offsetX)).fill().forEach(() => {
-    xs = calcOffsetX(xs)
-  })
+  Array(Math.abs(offsetX))
+    .fill()
+    .forEach(() => {
+      xs = calcOffsetX(xs)
+    })
 
   return `${ys[0].value}${xs[0].value}${ys[1].value}${xs[1].value}`
 }
