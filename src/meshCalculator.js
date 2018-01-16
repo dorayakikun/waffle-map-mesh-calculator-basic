@@ -1,23 +1,23 @@
 // @flow
 import {
-  meshToLatLng as firstMeshToLatLng,
-  meshToBounds as firstMeshToBounds,
-  latLngToMesh as latLngToFirstMesh,
-  panMeshByOffset as panFirstMeshByOffset,
+  toCenterLatLng as firstMeshCodeToCenterLatLng,
+  toBounds as firstMeshCodeToBounds,
+  toMeshCode as toFirstMeshCode,
+  offset as offsetFirstMeshCode,
 } from './firstMeshCalculator'
 
 import {
-  meshToLatLng as secondMeshToLatLng,
-  meshToBounds as secondMeshToBounds,
-  latLngToMesh as latLngToSecondMesh,
-  panMeshByOffset as panSecondMeshByOffset,
+  toCenterLatLng as secondMeshCodeToLatLng,
+  toBounds as secondMeshCodeToBounds,
+  toMeshCode as toSecondMeshCode,
+  offset as offsetSecondMeshCode,
 } from './secondMeshCalculator'
 
 import {
-  meshToLatLng as thirdMeshToLatLng,
-  meshToBounds as thirdMeshToBounds,
-  latLngToMesh as latLngToThirdMesh,
-  panMeshByOffset as panThirdMeshByOffset,
+  toCenterLatLng as thirdMeshCodeToLatLng,
+  toBounds as thirdMeshCodeToBounds,
+  toMeshCode as latLngToThirdMesh,
+  offset as offsetThirdMeshCode,
 } from './thirdMeshCalculator'
 
 export type LatLng = {
@@ -40,65 +40,64 @@ export const THIRD_MAX_DIGIT = 9
 
 /**
  * Get the scale corresponding to zoom.
- * @param zoom zoom
+ * @param {number} zoom zoom level
  * @returns {number} scale
  */
-export const getScaleWith = (zoom: number): number => {
+export const scaleFrom = (zoom: number): number => {
   if (zoom <= 19 && zoom >= 14) {
     return 3
   } else if (zoom <= 13 && zoom >= 11) {
     return 2
-  } else {
-    return 1
   }
+  return 1
 }
 
 /**
  * Convert mesh to LatLng.
  *
- * @param mesh mesh
+ * @param {string} meshCode mesh code
  * @returns {LatLng} latitude and longitude
  */
-export const meshToLatLng = (mesh: string): LatLng => {
-  const newMesh = mesh.replace(/-/g, '')
-  const len = newMesh.length
+export const toCenterLatLng = (meshCode: string): LatLng => {
+  const newMeshCode = meshCode.replace(/-/g, '')
+  const len = newMeshCode.length
   switch (len) {
     case 4:
-      return firstMeshToLatLng(newMesh)
+      return firstMeshCodeToCenterLatLng(newMeshCode)
     case 6:
-      return secondMeshToLatLng(newMesh)
+      return secondMeshCodeToLatLng(newMeshCode)
     case 8:
-      return thirdMeshToLatLng(newMesh)
+      return thirdMeshCodeToLatLng(newMeshCode)
     default:
       throw new Error(
         `Invalid mesh code found.
 The length of the mesh code is 4, 6, or 8.
-The actual length is ${newMesh.length}, the mesh code is ${newMesh}.`
+The actual length is ${newMeshCode.length}, the mesh code is ${newMeshCode}.`
       )
   }
 }
 
 /**
  * Convert mesh to bounds.
- * @param mesh mesh
+ * @param {string} meshCode mesh code
  * @returns {Bounds} bounds
  */
-export const meshToBounds = (mesh: string): Bounds => {
-  const newMesh = mesh.replace(/-/g, '')
+export const toBounds = (meshCode: string): Bounds => {
+  const newMeshCode = meshCode.replace(/-/g, '')
 
-  const len = newMesh.length
+  const len = newMeshCode.length
   switch (len) {
     case 4:
-      return firstMeshToBounds(newMesh)
+      return firstMeshCodeToBounds(newMeshCode)
     case 6:
-      return secondMeshToBounds(newMesh)
+      return secondMeshCodeToBounds(newMeshCode)
     case 8:
-      return thirdMeshToBounds(newMesh)
+      return thirdMeshCodeToBounds(newMeshCode)
     default:
       throw new Error(
         `Invalid mesh code found.
 The length of the mesh code is 4, 6, or 8.
-The actual length is ${newMesh.length}, the mesh code is ${newMesh}.`
+The actual length is ${newMeshCode.length}, the mesh code is ${newMeshCode}.`
       )
   }
 }
@@ -106,21 +105,17 @@ The actual length is ${newMesh.length}, the mesh code is ${newMesh}.`
 /**
  * Convert LatLng to mesh.
  *
- * @param lat latitude
- * @param lng longitude
- * @param scale scale
+ * @param {number} lat latitude
+ * @param {number} lng longitude
+ * @param {number} scale scale
  * @returns {string} mesh.
  */
-export const latLngToMesh = (
-  lat: number,
-  lng: number,
-  scale: number
-): string => {
+export const toMeshCode = (lat: number, lng: number, scale: number): string => {
   switch (scale) {
     case 1:
-      return latLngToFirstMesh(lat, lng)
+      return toFirstMeshCode(lat, lng)
     case 2:
-      return latLngToSecondMesh(lat, lng)
+      return toSecondMeshCode(lat, lng)
     case 3:
       return latLngToThirdMesh(lat, lng)
     default:
@@ -162,7 +157,7 @@ export const calcPrevPoints = (points: Array<Point>): Array<Point> => {
   return prevPoints
 }
 
-export const panMeshByOffset = (
+export const offset = (
   mesh: string,
   offsetX: number,
   offsetY: number
@@ -171,11 +166,11 @@ export const panMeshByOffset = (
   const len = newMesh.length
   switch (len) {
     case 4:
-      return panFirstMeshByOffset(newMesh, offsetX, offsetY)
+      return offsetFirstMeshCode(newMesh, offsetX, offsetY)
     case 6:
-      return panSecondMeshByOffset(newMesh, offsetX, offsetY)
+      return offsetSecondMeshCode(newMesh, offsetX, offsetY)
     case 8:
-      return panThirdMeshByOffset(newMesh, offsetX, offsetY)
+      return offsetThirdMeshCode(newMesh, offsetX, offsetY)
     default:
       throw new Error(
         `Invalid mesh code found.

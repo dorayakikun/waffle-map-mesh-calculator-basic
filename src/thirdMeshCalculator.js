@@ -6,10 +6,10 @@ import {
   calcNextPoints,
   calcPrevPoints,
 } from './meshCalculator'
-import { latLngToMesh as latLngToSecondMesh } from './secondMeshCalculator'
+import { toMeshCode as latLngToSecondMesh } from './secondMeshCalculator'
 import type { Bounds, LatLng, Point } from './meshCalculator'
 
-export const meshToLatLng = (meshCode: string): LatLng => {
+export const toCenterLatLng = (meshCode: string): LatLng => {
   if (!meshCode.match(/\d{8}/)) {
     throw new Error(
       `Invalid mesh code found.
@@ -18,12 +18,12 @@ Actual mesh code is ${meshCode}.`
     )
   }
 
-  const y1 = parseInt(meshCode.substr(0, 2))
-  const x1 = parseInt(meshCode.substr(2, 2))
-  const y2 = parseInt(meshCode.substr(4, 1))
-  const x2 = parseInt(meshCode.substr(5, 1))
-  const y3 = parseInt(meshCode.substr(6, 1))
-  const x3 = parseInt(meshCode.substr(7))
+  const y1 = parseInt(meshCode.substr(0, 2), 10)
+  const x1 = parseInt(meshCode.substr(2, 2), 10)
+  const y2 = parseInt(meshCode.substr(4, 1), 10)
+  const x2 = parseInt(meshCode.substr(5, 1), 10)
+  const y3 = parseInt(meshCode.substr(6, 1), 10)
+  const x3 = parseInt(meshCode.substr(7), 10)
 
   if (y2 > 7 || x2 > 7) {
     throw new Error(
@@ -39,7 +39,7 @@ Actual mesh code is ${meshCode}.`
   }
 }
 
-export const meshToBounds = (meshCode: string): Bounds => {
+export const toBounds = (meshCode: string): Bounds => {
   if (!meshCode.match(/\d{8}/)) {
     throw new Error(
       `Invalid mesh code found.
@@ -48,12 +48,12 @@ Actual mesh code is ${meshCode}.`
     )
   }
 
-  const y1 = parseInt(meshCode.substr(0, 2))
-  const x1 = parseInt(meshCode.substr(2, 2))
-  const y2 = parseInt(meshCode.substr(4, 1))
-  const x2 = parseInt(meshCode.substr(5, 1))
-  const y3 = parseInt(meshCode.substr(6, 1))
-  const x3 = parseInt(meshCode.substr(7))
+  const y1 = parseInt(meshCode.substr(0, 2), 10)
+  const x1 = parseInt(meshCode.substr(2, 2), 10)
+  const y2 = parseInt(meshCode.substr(4, 1), 10)
+  const x2 = parseInt(meshCode.substr(5, 1), 10)
+  const y3 = parseInt(meshCode.substr(6, 1), 10)
+  const x3 = parseInt(meshCode.substr(7), 10)
 
   if (y2 > 7 || x2 > 7) {
     throw new Error(
@@ -72,7 +72,7 @@ Actual mesh code is ${meshCode}.`
   }
 }
 
-export const latLngToMesh = (lat: number, lng: number): string => {
+export const toMeshCode = (lat: number, lng: number): string => {
   const y2 = (lat * 1.5 - Math.trunc(lat * 1.5)) * 8
   const x2 = (lng - 100 - Math.trunc(lng - 100)) * 8
 
@@ -81,7 +81,7 @@ export const latLngToMesh = (lat: number, lng: number): string => {
   return `${latLngToSecondMesh(lat, lng)}-${y3}${x3}`
 }
 
-export const panMeshByOffset = (
+export const offset = (
   mesh: string,
   offsetX: number,
   offsetY: number
@@ -94,12 +94,12 @@ Actual mesh code is ${mesh}.`
     )
   }
 
-  const y1 = parseInt(mesh.substr(0, 2))
-  const x1 = parseInt(mesh.substr(2, 2))
-  const y2 = parseInt(mesh.substr(4, 1))
-  const x2 = parseInt(mesh.substr(5, 1))
-  const y3 = parseInt(mesh.substr(6, 1))
-  const x3 = parseInt(mesh.substr(7))
+  const y1 = parseInt(mesh.substr(0, 2), 10)
+  const x1 = parseInt(mesh.substr(2, 2), 10)
+  const y2 = parseInt(mesh.substr(4, 1), 10)
+  const x2 = parseInt(mesh.substr(5, 1), 10)
+  const y3 = parseInt(mesh.substr(6, 1), 10)
+  const x3 = parseInt(mesh.substr(7), 10)
 
   const calcOffsetY = offsetY > 0 ? calcNextPoints : calcPrevPoints
   let ys: Array<Point> = [
