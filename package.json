@@ -2,7 +2,7 @@
   "name": "waffle-map-mesh-calculator-basic",
   "version": "1.1.2",
   "description": "The mesh calculator.It conforms to the standard rigional mesh.",
-  "main": "lib/meshCalculator.js",
+  "main": "lib/index.js",
   "files": [
     "lib"
   ],
@@ -13,6 +13,7 @@
   "scripts": {
     "build": "babel src -d lib",
     "fmt": "prettier --write '**/*.{js,json}'",
+    "precommit": "lint-staged",
     "prepack": "npm run build && flow gen-flow-files src --out-dir lib",
     "flow": "flow",
     "test": "nyc ava"
@@ -32,7 +33,7 @@
     "babel-preset-latest": "^6.24.1",
     "eslint": "^4.6.0",
     "eslint-config-precure": "^0.13.0",
-    "flow-bin": "^0.63.0",
+    "flow-bin": "^0.63.1",
     "husky": "^0.14.3",
     "lint-staged": "^6.0.0",
     "nyc": "^11.0.3",
@@ -44,6 +45,12 @@
     },
     "require": [
       "babel-register"
+    ]
+  },
+  "lint-staged": {
+    ".{js,json}": [
+      "fmt",
+      "git add"
     ]
   }
 }

@@ -1,5 +1,5 @@
 // @flow
-import { latLngToMesh as latLngToFirstMesh } from './firstMeshCalculator'
+import { toMeshCode as latLngToFirstMesh } from './firstMeshCalculator'
 import {
   FIRST_MAX_DIGIT,
   SECOND_MAX_DIGIT,
@@ -9,7 +9,7 @@ import {
 
 import type { Bounds, LatLng } from './meshCalculator'
 
-export const meshToLatLng = (meshCode: string): LatLng => {
+export const toCenterLatLng = (meshCode: string): LatLng => {
   if (!meshCode.match(/\d{6}/)) {
     throw new Error(
       `Invalid mesh code found.
@@ -17,10 +17,10 @@ Only numbers are acceptable.
 Actual mesh code is ${meshCode}.`
     )
   }
-  const y1 = parseInt(meshCode.substr(0, 2))
-  const x1 = parseInt(meshCode.substr(2, 2))
-  const y2 = parseInt(meshCode.substr(4, 1))
-  const x2 = parseInt(meshCode.substr(5))
+  const y1 = parseInt(meshCode.substr(0, 2), 10)
+  const x1 = parseInt(meshCode.substr(2, 2), 10)
+  const y2 = parseInt(meshCode.substr(4, 1), 10)
+  const x2 = parseInt(meshCode.substr(5), 10)
 
   if (y2 > 7 || x2 > 7) {
     throw new Error(
@@ -36,7 +36,7 @@ Actual mesh code is ${meshCode}.`
   }
 }
 
-export const meshToBounds = (meshCode: string): Bounds => {
+export const toBounds = (meshCode: string): Bounds => {
   if (!meshCode.match(/\d{6}/)) {
     throw new Error(
       `Invalid mesh code found.
@@ -45,10 +45,10 @@ Actual mesh code is ${meshCode}.`
     )
   }
 
-  const y1 = parseInt(meshCode.substr(0, 2))
-  const x1 = parseInt(meshCode.substr(2, 2))
-  const y2 = parseInt(meshCode.substr(4, 1))
-  const x2 = parseInt(meshCode.substr(5))
+  const y1 = parseInt(meshCode.substr(0, 2), 10)
+  const x1 = parseInt(meshCode.substr(2, 2), 10)
+  const y2 = parseInt(meshCode.substr(4, 1), 10)
+  const x2 = parseInt(meshCode.substr(5), 10)
 
   if (y2 > 7 || x2 > 7) {
     throw new Error(
@@ -67,7 +67,7 @@ Actual mesh code is ${meshCode}.`
   }
 }
 
-export const latLngToMesh = (lat: number, lng: number): string => {
+export const toMeshCode = (lat: number, lng: number): string => {
   const y1 = lat * 1.5
   const x1 = lng - 100
 
@@ -76,7 +76,7 @@ export const latLngToMesh = (lat: number, lng: number): string => {
   return `${latLngToFirstMesh(lat, lng)}-${y2}${x2}`
 }
 
-export const panMeshByOffset = (
+export const offset = (
   mesh: string,
   offsetX: number,
   offsetY: number
@@ -89,10 +89,10 @@ Actual mesh code is ${mesh}.`
     )
   }
 
-  const y1 = parseInt(mesh.substr(0, 2))
-  const x1 = parseInt(mesh.substr(2, 2))
-  const y2 = parseInt(mesh.substr(4, 1))
-  const x2 = parseInt(mesh.substr(5))
+  const y1 = parseInt(mesh.substr(0, 2), 10)
+  const x1 = parseInt(mesh.substr(2, 2), 10)
+  const y2 = parseInt(mesh.substr(4, 1), 10)
+  const x2 = parseInt(mesh.substr(5), 10)
 
   const calcOffsetY = offsetY > 0 ? calcNextPoints : calcPrevPoints
   let ys = [
