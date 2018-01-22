@@ -1,6 +1,0 @@
-extends:
-- precure/oss
-- precure/react
-
-rules:
-  no-duplicate-imports: 0
