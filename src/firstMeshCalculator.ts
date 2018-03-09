@@ -1,5 +1,5 @@
 // @flow
-import type { Bounds, LatLng } from './meshCalculator'
+import { Bounds, LatLng } from './meshCalculator'
 
 export const toCenterLatLng = (meshCode: string): LatLng => {
   if (!meshCode.match(/\d{4}/)) {
