@@ -6,8 +6,8 @@
     "rootDir": "src",
     "strict": true,
     "lib": ["esnext"],
-    // "types": [],
+    "types": ["jest"],
     "esModuleInterop": true
   },
-  "exclude": ["lib", "node_modules"]
+  "exclude": ["lib", "node_modules", "*/__tests__/*"]
 }
