@@ -11,15 +11,11 @@
     "url": "https://github.com/dorayakikun/waffle-map-mesh-calculator-basic.git"
   },
   "scripts": {
-    "build:flow": "flow gen-flow-files src --out-dir lib",
-    "build:js": "babel src -d lib",
-    "build": "npm run build:js && npm run build:flow",
-    "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
-    "fmt": "prettier --write '**/*.{js,json,md}'",
-    "lint": "eslint src",
+    "build": "tsc -d",
+    "fmt": "prettier --write '**/*.{json,md,ts}'",
     "prebuild": "rimraf lib/*",
     "precommit": "lint-staged",
-    "prepublish": "npm run precommit && npm run build",
+    "prepare": "npm run precommit && npm run build",
     "test": "nyc ava"
   },
   "keywords": [
