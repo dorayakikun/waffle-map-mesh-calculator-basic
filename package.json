@@ -26,39 +26,16 @@
   "author": "dorayakikun <amakunai.dorayaki@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "ava": "^0.25.0",
-    "babel-cli": "^6.24.1",
-    "babel-eslint": "^8.2.1",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-flow": "^6.23.0",
-    "eslint": "^4.16.0",
-    "eslint-config-fbjs": "^2.0.1",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-plugin-babel": "^4.1.2",
-    "eslint-plugin-flowtype": "^2.41.0",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-react": "^7.5.1",
-    "eslint-plugin-relay": "0.0.21",
-    "flow-bin": "^0.66.0",
     "husky": "^0.14.3",
     "lint-staged": "^7.0.0",
-    "nyc": "^11.0.3",
     "prettier": "^1.4.4",
     "rimraf": "^2.6.2",
     "tslint": "^5.9.1",
     "typescript": "^2.7.2",
     "typings": "^2.1.1"
   },
-  "ava": {
-    "babel": {
-      "babelrc": true
-    },
-    "require": [
-      "babel-register"
-    ]
-  },
   "lint-staged": {
-    "*.{js,json,md}": [
+    "*.{json,md,ts}": [
       "prettier --write",
       "git add"
     ]
