@@ -20,17 +20,17 @@ import {
   offset as offsetThirdMeshCode,
 } from './thirdMeshCalculator'
 
-export type LatLng = {
-  lat: number,
-  lng: number,
+export interface LatLng {
+  lat: number
+  lng: number
 }
-export type Bounds = {
-  leftTop: LatLng,
-  rightBottom: LatLng,
+export interface Bounds {
+  leftTop: LatLng
+  rightBottom: LatLng
 }
-export type Point = {
-  value: number,
-  maxDigit: number,
+export interface Point {
+  value: number
+  maxDigit: number
 }
 
 export const SCALES = [1, 2, 3]

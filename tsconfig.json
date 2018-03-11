@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "outDir": "lib",
+    "rootDir": "src",
+    "strict": true,
+    "lib": ["esnext"],
+    "types": ["jest"],
+    "esModuleInterop": true
+  },
+  "exclude": ["lib", "node_modules", "*/__tests__/*"]
+}
