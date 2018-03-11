@@ -1,6 +1,6 @@
 {
   "name": "waffle-map-mesh-calculator-basic",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "The mesh calculator.It conforms to the standard rigional mesh.",
   "main": "lib/index.js",
   "files": [
@@ -44,10 +44,16 @@
   },
   "jest": {
     "collectCoverage": true,
-    "moduleFileExtensions": ["ts", "tsx", "js"],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
     "transform": {
       "^.+\\.(ts|tsx)$": "<rootDir>/preprocessor.js"
     },
-    "testMatch": ["**/__tests__/*.+(ts|tsx|js)"]
-}
+    "testMatch": [
+      "**/__tests__/*.+(ts|tsx|js)"
+    ]
+  }
 }
