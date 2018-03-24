@@ -1,4 +1,3 @@
-// @flow
 import {
   FIRST_MAX_DIGIT,
   SECOND_MAX_DIGIT,

@@ -1,4 +1,3 @@
-// @flow
 import { Bounds, LatLng } from './meshCalculator'
 
 export const toCenterLatLng = (meshCode: string): LatLng => {

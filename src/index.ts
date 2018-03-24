@@ -1,5 +1,3 @@
-// @flow
-
 export {
   SCALES,
   scaleFrom,
@@ -7,6 +5,6 @@ export {
   toBounds,
   toMeshCode,
   offset,
-  LatLng, 
+  LatLng,
   Bounds,
 } from './meshCalculator'

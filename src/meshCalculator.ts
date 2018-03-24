@@ -1,4 +1,3 @@
-// @flow
 import {
   toCenterLatLng as firstMeshCodeToCenterLatLng,
   toBounds as firstMeshCodeToBounds,

@@ -1,4 +1,3 @@
-// @flow
 import { toMeshCode as latLngToFirstMesh } from './firstMeshCalculator'
 import {
   FIRST_MAX_DIGIT,
