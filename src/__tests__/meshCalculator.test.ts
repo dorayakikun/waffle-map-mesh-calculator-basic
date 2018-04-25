@@ -1,9 +1,9 @@
 import {
+  offset,
   scaleFrom,
+  toBounds,
   toCenterLatLng,
   toMeshCode,
-  toBounds,
-  offset,
 } from '../meshCalculator'
 
 // ---
@@ -165,10 +165,10 @@ test('Should convert mesh 5339-35 to bounds', () => {
   const expected = {
     leftTop: {
       lat: lat + 1 / 12,
-      lng: lng,
+      lng,
     },
     rightBottom: {
-      lat: lat,
+      lat,
       lng: lng + 1 / 8,
     },
   }
@@ -200,10 +200,10 @@ test('Should convert mesh 5339-35-97 to bounds', () => {
   const expected = {
     leftTop: {
       lat: lat + 1 / 120,
-      lng: lng,
+      lng,
     },
     rightBottom: {
-      lat: lat,
+      lat,
       lng: lng + 1 / 80,
     },
   }

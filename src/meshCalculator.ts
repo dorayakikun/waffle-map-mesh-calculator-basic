@@ -1,22 +1,22 @@
 import {
-  toCenterLatLng as firstMeshCodeToCenterLatLng,
-  toBounds as firstMeshCodeToBounds,
-  toMeshCode as toFirstMeshCode,
   offset as offsetFirstMeshCode,
+  toBounds as firstMeshCodeToBounds,
+  toCenterLatLng as firstMeshCodeToCenterLatLng,
+  toMeshCode as toFirstMeshCode,
 } from './firstMeshCalculator'
 
 import {
-  toCenterLatLng as secondMeshCodeToLatLng,
-  toBounds as secondMeshCodeToBounds,
-  toMeshCode as toSecondMeshCode,
   offset as offsetSecondMeshCode,
+  toBounds as secondMeshCodeToBounds,
+  toCenterLatLng as secondMeshCodeToLatLng,
+  toMeshCode as toSecondMeshCode,
 } from './secondMeshCalculator'
 
 import {
-  toCenterLatLng as thirdMeshCodeToLatLng,
-  toBounds as thirdMeshCodeToBounds,
-  toMeshCode as latLngToThirdMesh,
   offset as offsetThirdMeshCode,
+  toBounds as thirdMeshCodeToBounds,
+  toCenterLatLng as thirdMeshCodeToLatLng,
+  toMeshCode as latLngToThirdMesh,
 } from './thirdMeshCalculator'
 
 export interface LatLng {
@@ -126,7 +126,7 @@ The actual scale is ${scale}.`
   }
 }
 
-export const calcNextPoints = (points: Array<Point>): Array<Point> => {
+export const calcNextPoints = (points: Point[]): Point[] => {
   const nextPoints = [...points]
   const last = nextPoints.length - 1
   nextPoints[last].value++
@@ -141,7 +141,7 @@ export const calcNextPoints = (points: Array<Point>): Array<Point> => {
   return nextPoints
 }
 
-export const calcPrevPoints = (points: Array<Point>): Array<Point> => {
+export const calcPrevPoints = (points: Point[]): Point[] => {
   const prevPoints = [...points]
   const last = prevPoints.length - 1
   prevPoints[last].value--
