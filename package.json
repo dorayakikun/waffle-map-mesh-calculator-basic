@@ -34,6 +34,7 @@
     "prettier": "^1.4.4",
     "rimraf": "^2.6.2",
     "tslint": "^5.9.1",
+    "tslint-config-prettier": "^1.12.0",
     "typescript": "^2.7.2",
     "typings": "^2.1.1"
   },
