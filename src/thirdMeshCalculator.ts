@@ -1,12 +1,12 @@
 import {
-  FIRST_MAX_DIGIT,
-  SECOND_MAX_DIGIT,
-  THIRD_MAX_DIGIT,
+  Bounds,
   calcNextPoints,
   calcPrevPoints,
-  Bounds,
+  FIRST_MAX_DIGIT,
   LatLng,
   Point,
+  SECOND_MAX_DIGIT,
+  THIRD_MAX_DIGIT,
 } from './meshCalculator'
 import { toMeshCode as latLngToSecondMesh } from './secondMeshCalculator'
 
@@ -103,13 +103,11 @@ Actual mesh code is ${mesh}.`
   const x3 = parseInt(mesh.substr(7), 10)
 
   const calcOffsetY = offsetY > 0 ? calcNextPoints : calcPrevPoints
-  let ys: Array<Point> = [
+  let ys: Point[] = [
     { value: y1, maxDigit: FIRST_MAX_DIGIT },
     { value: y2, maxDigit: SECOND_MAX_DIGIT },
     { value: y3, maxDigit: THIRD_MAX_DIGIT },
   ]
-
-  let a = Array(45)
 
   Array(Math.abs(offsetY))
     .fill(0)
@@ -118,7 +116,7 @@ Actual mesh code is ${mesh}.`
     })
 
   const calcOffsetX = offsetX > 0 ? calcNextPoints : calcPrevPoints
-  let xs: Array<Point> = [
+  let xs: Point[] = [
     { value: x1, maxDigit: FIRST_MAX_DIGIT },
     { value: x2, maxDigit: SECOND_MAX_DIGIT },
     { value: x3, maxDigit: THIRD_MAX_DIGIT },

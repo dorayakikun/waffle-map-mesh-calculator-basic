@@ -1,11 +1,11 @@
 import { toMeshCode as latLngToFirstMesh } from './firstMeshCalculator'
 import {
-  FIRST_MAX_DIGIT,
-  SECOND_MAX_DIGIT,
+  Bounds,
   calcNextPoints,
   calcPrevPoints,
-  Bounds,
+  FIRST_MAX_DIGIT,
   LatLng,
+  SECOND_MAX_DIGIT,
 } from './meshCalculator'
 
 export const toCenterLatLng = (meshCode: string): LatLng => {
