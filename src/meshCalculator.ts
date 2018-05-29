@@ -71,7 +71,7 @@ export const toCenterLatLng = (meshCode: string): LatLng => {
       throw new Error(
         `Invalid mesh code found.
 The length of the mesh code is 4, 6, or 8.
-The actual length is ${newMeshCode.length}, the mesh code is ${newMeshCode}.`
+The actual length is ${newMeshCode.length}, the mesh code is "${newMeshCode}".`
       )
   }
 }
@@ -96,7 +96,7 @@ export const toBounds = (meshCode: string): Bounds => {
       throw new Error(
         `Invalid mesh code found.
 The length of the mesh code is 4, 6, or 8.
-The actual length is ${newMeshCode.length}, the mesh code is ${newMeshCode}.`
+The actual length is ${newMeshCode.length}, the mesh code is "${newMeshCode}".`
       )
   }
 }
@@ -174,7 +174,7 @@ export const offset = (
       throw new Error(
         `Invalid mesh code found.
 The length of the mesh code is 4, 6, or 8.
-The actual length is ${newMesh.length}, the mesh code is ${newMesh}.`
+The actual length is ${newMesh.length}, the mesh code is "${newMesh}".`
       )
   }
 }

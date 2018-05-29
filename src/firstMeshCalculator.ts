@@ -5,7 +5,7 @@ export const toCenterLatLng = (meshCode: string): LatLng => {
     throw new Error(
       `Invalid mesh code found.
 Only numbers are acceptable.
-Actual mesh code is ${meshCode}.`
+Actual mesh code is "${meshCode}".`
     )
   }
   const y1 = parseInt(meshCode.substr(0, 2), 10)
@@ -21,7 +21,7 @@ export const toBounds = (meshCode: string): Bounds => {
     throw new Error(
       `Invalid mesh code found.
 Only numbers are acceptable.
-Actual mesh code is ${meshCode}.`
+Actual mesh code is "${meshCode}".`
     )
   }
 
@@ -51,7 +51,7 @@ export const offset = (
     throw new Error(
       `Invalid mesh code found.
 Only numbers are acceptable.
-Actual mesh code is ${meshCode}.`
+Actual mesh code is "${meshCode}".`
     )
   }
 

@@ -15,7 +15,7 @@ export const toCenterLatLng = (meshCode: string): LatLng => {
     throw new Error(
       `Invalid mesh code found.
 Only numbers are acceptable.
-Actual mesh code is ${meshCode}.`
+Actual mesh code is "${meshCode}".`
     )
   }
 
@@ -30,7 +30,7 @@ Actual mesh code is ${meshCode}.`
     throw new Error(
       `Invalid mesh code found.
 Only [0-7] are acceptable in second division.
-Actual mesh code is ${meshCode}.`
+Actual mesh code is "${meshCode}".`
     )
   }
 
@@ -45,7 +45,7 @@ export const toBounds = (meshCode: string): Bounds => {
     throw new Error(
       `Invalid mesh code found.
 Only numbers are acceptable.
-Actual mesh code is ${meshCode}.`
+Actual mesh code is "${meshCode}".`
     )
   }
 
@@ -60,7 +60,7 @@ Actual mesh code is ${meshCode}.`
     throw new Error(
       `Invalid mesh code found.
 Only [0-7] are acceptable in second division.
-Actual mesh code is ${meshCode}.`
+Actual mesh code is "${meshCode}".`
     )
   }
 
@@ -83,24 +83,24 @@ export const toMeshCode = (lat: number, lng: number): string => {
 }
 
 export const offset = (
-  mesh: string,
+  meshCode: string,
   offsetX: number,
   offsetY: number
 ): string => {
-  if (!mesh.match(/\d{8}/)) {
+  if (!meshCode.match(/\d{8}/)) {
     throw new Error(
       `Invalid mesh code found.
 Only numbers are acceptable.
-Actual mesh code is ${mesh}.`
+Actual mesh code is "${meshCode}".`
     )
   }
 
-  const y1 = parseInt(mesh.substr(0, 2), 10)
-  const x1 = parseInt(mesh.substr(2, 2), 10)
-  const y2 = parseInt(mesh.substr(4, 1), 10)
-  const x2 = parseInt(mesh.substr(5, 1), 10)
-  const y3 = parseInt(mesh.substr(6, 1), 10)
-  const x3 = parseInt(mesh.substr(7), 10)
+  const y1 = parseInt(meshCode.substr(0, 2), 10)
+  const x1 = parseInt(meshCode.substr(2, 2), 10)
+  const y2 = parseInt(meshCode.substr(4, 1), 10)
+  const x2 = parseInt(meshCode.substr(5, 1), 10)
+  const y3 = parseInt(meshCode.substr(6, 1), 10)
+  const x3 = parseInt(meshCode.substr(7), 10)
 
   const calcOffsetY = offsetY > 0 ? calcNextPoints : calcPrevPoints
   let ys: Point[] = [

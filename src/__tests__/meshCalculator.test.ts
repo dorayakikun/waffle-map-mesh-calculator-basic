@@ -37,7 +37,7 @@ test('Should throw error when mesh is 533', () => {
   expect(() => toCenterLatLng(mesh)).toThrow(
     `Invalid mesh code found.
 The length of the mesh code is 4, 6, or 8.
-The actual length is 3, the mesh code is 533.`
+The actual length is 3, the mesh code is "533".`
   )
 })
 
@@ -55,7 +55,7 @@ test('Should throw an error when mesh is 533a', () => {
   expect(() => toCenterLatLng(mesh)).toThrow(
     `Invalid mesh code found.
 Only numbers are acceptable.
-Actual mesh code is ${mesh.replace(/-/g, '')}.`
+Actual mesh code is "${mesh.replace(/-/g, '')}".`
   )
 })
 
@@ -73,7 +73,7 @@ test('Should throw an error when mesh is 5339-3a', () => {
   expect(() => toCenterLatLng(mesh)).toThrow(
     `Invalid mesh code found.
 Only numbers are acceptable.
-Actual mesh code is ${mesh.replace(/-/g, '')}.`
+Actual mesh code is "${mesh.replace(/-/g, '')}".`
   )
 })
 
@@ -82,7 +82,7 @@ test('Should throw an error when mesh is 5339-85', () => {
   expect(() => toCenterLatLng(mesh)).toThrow(
     `Invalid mesh code found.
 Only [0-7] are acceptable in second division.
-Actual mesh code is ${mesh.replace(/-/g, '')}.`
+Actual mesh code is "${mesh.replace(/-/g, '')}".`
   )
 })
 
@@ -100,7 +100,7 @@ test('Should throw an error when mesh is 5339-38-97', () => {
   expect(() => toCenterLatLng(mesh)).toThrow(
     `Invalid mesh code found.
 Only [0-7] are acceptable in second division.
-Actual mesh code is ${mesh.replace(/-/g, '')}.`
+Actual mesh code is "${mesh.replace(/-/g, '')}".`
   )
 })
 
@@ -109,7 +109,7 @@ test('Should throw an error when mesh is 5339-35-9a', () => {
   expect(() => toCenterLatLng(mesh)).toThrow(
     `Invalid mesh code found.
 Only numbers are acceptable.
-Actual mesh code is ${mesh.replace(/-/g, '')}.`
+Actual mesh code is "${mesh.replace(/-/g, '')}".`
   )
 })
 
@@ -118,7 +118,7 @@ test('Should throw an error when mesh is 5339-35-97-12', () => {
   expect(() => toCenterLatLng(mesh)).toThrow(
     `Invalid mesh code found.
 The length of the mesh code is 4, 6, or 8.
-The actual length is 10, the mesh code is 5339359712.`
+The actual length is 10, the mesh code is "5339359712".`
   )
 })
 
@@ -130,7 +130,7 @@ test('Should throw error when mesh is 533', () => {
   expect(() => toBounds(mesh)).toThrow(
     `Invalid mesh code found.
 The length of the mesh code is 4, 6, or 8.
-The actual length is 3, the mesh code is ${mesh}.`
+The actual length is 3, the mesh code is "${mesh}".`
   )
 })
 
@@ -154,7 +154,7 @@ test('Should throw error when mesh is 533a', () => {
   expect(() => toBounds(mesh)).toThrow(
     `Invalid mesh code found.
 Only numbers are acceptable.
-Actual mesh code is ${mesh.replace(/-/g, '')}.`
+Actual mesh code is "${mesh.replace(/-/g, '')}".`
   )
 })
 
@@ -180,7 +180,7 @@ test('Should throw error when mesh is 5339-3a', () => {
   expect(() => toBounds(mesh)).toThrow(
     `Invalid mesh code found.
 Only numbers are acceptable.
-Actual mesh code is ${mesh.replace(/-/g, '')}.`
+Actual mesh code is "${mesh.replace(/-/g, '')}".`
   )
 })
 
@@ -189,7 +189,7 @@ test('Should throw error when mesh is 5339-95', () => {
   expect(() => toBounds(mesh)).toThrow(
     `Invalid mesh code found.
 Only [0-7] are acceptable in second division.
-Actual mesh code is ${mesh.replace(/-/g, '')}.`
+Actual mesh code is "${mesh.replace(/-/g, '')}".`
   )
 })
 
@@ -215,7 +215,7 @@ test('Should throw error when mesh is 5339-38-97', () => {
   expect(() => toBounds(mesh)).toThrow(
     `Invalid mesh code found.
 Only [0-7] are acceptable in second division.
-Actual mesh code is ${mesh.replace(/-/g, '')}.`
+Actual mesh code is "${mesh.replace(/-/g, '')}".`
   )
 })
 
@@ -224,7 +224,7 @@ test('Should throw error when mesh is 5339-35-9a', () => {
   expect(() => toBounds(mesh)).toThrow(
     `Invalid mesh code found.
 Only numbers are acceptable.
-Actual mesh code is ${mesh.replace(/-/g, '')}.`
+Actual mesh code is "${mesh.replace(/-/g, '')}".`
   )
 })
 
@@ -233,7 +233,7 @@ test('Should throw error when mesh is 5339-35-97-12', () => {
   expect(() => toBounds(mesh)).toThrow(
     `Invalid mesh code found.
 The length of the mesh code is 4, 6, or 8.
-The actual length is 10, the mesh code is 5339359712.`
+The actual length is 10, the mesh code is "5339359712".`
   )
 })
 
@@ -278,7 +278,7 @@ test('Should throw error when mesh is 533', () => {
   expect(() => offset(mesh, -5, 0)).toThrow(
     `Invalid mesh code found.
 The length of the mesh code is 4, 6, or 8.
-The actual length is ${mesh.length}, the mesh code is ${mesh}.`
+The actual length is ${mesh.length}, the mesh code is "${mesh}".`
   )
 })
 
@@ -287,7 +287,7 @@ test('Should throw error when mesh is 533a', () => {
   expect(() => offset(mesh, -5, 0)).toThrow(
     `Invalid mesh code found.
 Only numbers are acceptable.
-Actual mesh code is ${mesh}.`
+Actual mesh code is "${mesh}".`
   )
 })
 
@@ -308,7 +308,7 @@ test('Should throw error when mesh is 53390a', () => {
   expect(() => offset(mesh, -5, 0)).toThrow(
     `Invalid mesh code found.
 Only numbers are acceptable.
-Actual mesh code is ${mesh}.`
+Actual mesh code is "${mesh}".`
   )
 })
 
@@ -331,6 +331,6 @@ test('Should throw error when mesh is 5339000a', () => {
   }).toThrow(
     `Invalid mesh code found.
 Only numbers are acceptable.
-Actual mesh code is ${mesh}.`
+Actual mesh code is "${mesh}".`
   )
 })
