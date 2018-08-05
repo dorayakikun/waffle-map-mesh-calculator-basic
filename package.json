@@ -35,7 +35,7 @@
     "rimraf": "^2.6.2",
     "tslint": "^5.9.1",
     "tslint-config-prettier": "^1.12.0",
-    "typescript": "^2.7.2",
+    "typescript": "^3.0.1",
     "typings": "^2.1.1"
   },
   "lint-staged": {
@@ -56,6 +56,8 @@
     },
     "testMatch": [
       "**/__tests__/*.+(ts|tsx|js)"
-    ]
+    ],
+    "testURL": "http://localhost/",
+    "verbose": true
   }
 }
