@@ -1,6 +1,5 @@
 # waffle-map-mesh-calculator-basic
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/dorayakikun/waffle-map-mesh-calculator-basic.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/dorayakikun/waffle-map-mesh-calculator-basic.svg?branch=master)](https://travis-ci.org/dorayakikun/waffle-map-mesh-calculator-basic)
 [![Code Climate](https://codeclimate.com/github/dorayakikun/waffle-map-mesh-calculator-basic/badges/gpa.svg)](https://codeclimate.com/github/dorayakikun/waffle-map-mesh-calculator-basic)
 [![Test Coverage](https://codeclimate.com/github/dorayakikun/waffle-map-mesh-calculator-basic/badges/coverage.svg)](https://codeclimate.com/github/dorayakikun/waffle-map-mesh-calculator-basic/coverage)
