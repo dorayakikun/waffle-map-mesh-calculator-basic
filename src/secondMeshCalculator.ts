@@ -8,7 +8,7 @@ import {
   SECOND_MAX_DIGIT
 } from "./meshCalculator";
 
-export const toCenterLatLng = (meshCode: string): LatLng => {
+export function toCenterLatLng(meshCode: string): LatLng {
   if (!meshCode.match(/\d{6}/)) {
     throw new Error(
       `Invalid mesh code found.
@@ -33,9 +33,9 @@ Actual mesh code is "${meshCode}".`
     lat: (y1 + y2 / 8) / 1.5 + 1 / 24,
     lng: x1 + x2 / 8 + 100 + 1 / 16
   };
-};
+}
 
-export const toBounds = (meshCode: string): Bounds => {
+export function toBounds(meshCode: string): Bounds {
   if (!meshCode.match(/\d{6}/)) {
     throw new Error(
       `Invalid mesh code found.
@@ -64,22 +64,22 @@ Actual mesh code is "${meshCode}".`
     leftTop: { lat: cy + 1 / 12, lng: cx },
     rightBottom: { lat: cy, lng: cx + 1 / 8 }
   };
-};
+}
 
-export const toMeshCode = (lat: number, lng: number): string => {
+export function toMeshCode(lat: number, lng: number): string {
   const y1 = lat * 1.5;
   const x1 = lng - 100;
 
   const y2 = `${Math.trunc((y1 - Math.trunc(y1)) * 8)}`;
   const x2 = `${Math.trunc((x1 - Math.trunc(x1)) * 8)}`;
   return `${latLngToFirstMesh(lat, lng)}-${y2}${x2}`;
-};
+}
 
-export const offset = (
+export function offset(
   meshCode: string,
   offsetX: number,
   offsetY: number
-): string => {
+): string {
   if (!meshCode.match(/\d{6}/)) {
     throw new Error(
       `Invalid mesh code found.
@@ -116,4 +116,4 @@ Actual mesh code is "${meshCode}".`
     });
 
   return `${ys[0].value}${xs[0].value}${ys[1].value}${xs[1].value}`;
-};
+}

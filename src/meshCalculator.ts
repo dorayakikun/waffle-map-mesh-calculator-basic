@@ -42,14 +42,14 @@ export const THIRD_MAX_DIGIT = 9;
  * @param {number} zoom zoom level
  * @returns {number} scale
  */
-export const scaleFrom = (zoom: number): number => {
+export function scaleFrom(zoom: number): number {
   if (zoom <= 19 && zoom >= 14) {
     return 3;
   } else if (zoom <= 13 && zoom >= 11) {
     return 2;
   }
   return 1;
-};
+}
 
 /**
  * Convert mesh to LatLng.
@@ -57,7 +57,7 @@ export const scaleFrom = (zoom: number): number => {
  * @param {string} meshCode mesh code
  * @returns {LatLng} latitude and longitude
  */
-export const toCenterLatLng = (meshCode: string): LatLng => {
+export function toCenterLatLng(meshCode: string): LatLng {
   const newMeshCode = meshCode.replace(/-/g, "");
   const len = newMeshCode.length;
   switch (len) {
@@ -74,14 +74,14 @@ The length of the mesh code is 4, 6, or 8.
 The actual length is ${newMeshCode.length}, the mesh code is "${newMeshCode}".`
       );
   }
-};
+}
 
 /**
  * Convert mesh to bounds.
  * @param {string} meshCode mesh code
  * @returns {Bounds} bounds
  */
-export const toBounds = (meshCode: string): Bounds => {
+export function toBounds(meshCode: string): Bounds {
   const newMeshCode = meshCode.replace(/-/g, "");
 
   const len = newMeshCode.length;
@@ -99,7 +99,7 @@ The length of the mesh code is 4, 6, or 8.
 The actual length is ${newMeshCode.length}, the mesh code is "${newMeshCode}".`
       );
   }
-};
+}
 
 /**
  * Convert LatLng to mesh.
@@ -109,7 +109,7 @@ The actual length is ${newMeshCode.length}, the mesh code is "${newMeshCode}".`
  * @param {number} scale scale
  * @returns {string} mesh.
  */
-export const toMeshCode = (lat: number, lng: number, scale: number): string => {
+export function toMeshCode(lat: number, lng: number, scale: number): string {
   switch (scale) {
     case 1:
       return toFirstMeshCode(lat, lng);
@@ -124,9 +124,9 @@ The scale range is [1-3].
 The actual scale is ${scale}.`
       );
   }
-};
+}
 
-export const calcNextPoints = (points: Point[]): Point[] => {
+export function calcNextPoints(points: Point[]): Point[] {
   const nextPoints = [...points];
   const last = nextPoints.length - 1;
   nextPoints[last].value++;
@@ -139,9 +139,9 @@ export const calcNextPoints = (points: Point[]): Point[] => {
     }
   }
   return nextPoints;
-};
+}
 
-export const calcPrevPoints = (points: Point[]): Point[] => {
+export function calcPrevPoints(points: Point[]): Point[] {
   const prevPoints = [...points];
   const last = prevPoints.length - 1;
   prevPoints[last].value--;
@@ -154,13 +154,9 @@ export const calcPrevPoints = (points: Point[]): Point[] => {
     }
   }
   return prevPoints;
-};
+}
 
-export const offset = (
-  mesh: string,
-  offsetX: number,
-  offsetY: number
-): string => {
+export function offset(mesh: string, offsetX: number, offsetY: number): string {
   const newMesh = mesh.replace(/-/g, "");
   const len = newMesh.length;
   switch (len) {
@@ -177,4 +173,4 @@ The length of the mesh code is 4, 6, or 8.
 The actual length is ${newMesh.length}, the mesh code is "${newMesh}".`
       );
   }
-};
+}
