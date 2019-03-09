@@ -1,6 +1,6 @@
 # waffle-map-mesh-calculator-basic
 
-[![Build Status](https://travis-ci.org/dorayakikun/waffle-map-mesh-calculator-basic.svg?branch=master)](https://travis-ci.org/dorayakikun/waffle-map-mesh-calculator-basic)
+[![Build Status](https://dev.azure.com/dorayakikun/OSS/_apis/build/status/dorayakikun.waffle-map-mesh-calculator-basic?branchName=master)](https://dev.azure.com/dorayakikun/OSS/_build/latest?definitionId=2&branchName=master)
 [![Code Climate](https://codeclimate.com/github/dorayakikun/waffle-map-mesh-calculator-basic/badges/gpa.svg)](https://codeclimate.com/github/dorayakikun/waffle-map-mesh-calculator-basic)
 [![Test Coverage](https://codeclimate.com/github/dorayakikun/waffle-map-mesh-calculator-basic/badges/coverage.svg)](https://codeclimate.com/github/dorayakikun/waffle-map-mesh-calculator-basic/coverage)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
