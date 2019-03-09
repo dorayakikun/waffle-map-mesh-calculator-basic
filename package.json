@@ -33,24 +33,24 @@
     "eslint": "^5.9.0",
     "eslint-config-prettier": "^4.0.0",
     "eslint-plugin-prettier": "^3.0.0",
-    "jest": "^24.0.0",
+    "jest": "^24.3.1",
     "jest-junit": "^6.3.0",
     "prettier": "^1.15.2",
+    "ts-jest": "^24.0.0",
     "typescript": "^3.1.6",
     "yarn": "^1.13.0"
   },
   "jest": {
     "collectCoverage": true,
     "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
+      "js",
+      "ts"
     ],
     "transform": {
-      "^.+\\.(ts|tsx)$": "<rootDir>/preprocessor.js"
+      "^.+\\.tsx?$": "ts-jest"
     },
     "testMatch": [
-      "**/__tests__/*.+(ts|tsx|js)"
+      "**/__tests__/*.+ts"
     ],
     "testURL": "http://localhost/",
     "verbose": true
