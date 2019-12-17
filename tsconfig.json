@@ -9,5 +9,5 @@
     "types": ["jest"],
     "esModuleInterop": true
   },
-  "exclude": ["lib", "node_modules", "*/__tests__/*"]
+  "exclude": ["lib", "node_modules"]
 }

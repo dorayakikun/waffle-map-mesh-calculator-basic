@@ -127,7 +127,5 @@ Actual mesh code is "${meshCode}".`
       xs = calcOffsetX(xs);
     });
 
-  return `${ys[0].value}${xs[0].value}${ys[1].value}${xs[1].value}${
-    ys[2].value
-  }${xs[2].value}`;
+  return `${ys[0].value}${xs[0].value}${ys[1].value}${xs[1].value}${ys[2].value}${xs[2].value}`;
 }
