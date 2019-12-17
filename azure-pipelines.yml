@@ -83,7 +83,7 @@ jobs:
     dependsOn:
       - basic
     pool:
-      vmImage: "macOS 10.15"
+      vmImage: "macOS-latest"
     strategy:
       maxParallel: 3
       matrix:
