@@ -46,10 +46,10 @@
       "ts"
     ],
     "transform": {
-      "^.+\\.tsx?$": "ts-jest"
+      "^.+\\.ts$": "ts-jest"
     },
     "testMatch": [
-      "**/__tests__/*.+ts"
+      "**/__tests__/**/*.ts"
     ],
     "testPathIgnorePatterns": [
       "lib"
