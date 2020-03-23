@@ -3,7 +3,7 @@ import {
   scaleFrom,
   toBounds,
   toCenterLatLng,
-  toMeshCode
+  toMeshCode,
 } from "../meshCalculator";
 
 // ---
@@ -45,7 +45,7 @@ test("Should convert mesh 5339 to LatLng", () => {
   const mesh = "5339";
   const expected = {
     lat: 53 / 1.5 + 1 / 3,
-    lng: 39 + 100 + 1 / 2
+    lng: 39 + 100 + 1 / 2,
   };
   expect(toCenterLatLng(mesh)).toEqual(expected);
 });
@@ -63,7 +63,7 @@ test("Should convert mesh 5339-35 to LatLng", () => {
   const mesh = "5339-35";
   const expected = {
     lat: (53 + 3 / 8) / 1.5 + 1 / 24,
-    lng: 39 + 5 / 8 + 100 + 1 / 16
+    lng: 39 + 5 / 8 + 100 + 1 / 16,
   };
   expect(toCenterLatLng(mesh)).toEqual(expected);
 });
@@ -90,7 +90,7 @@ test("Should convert mesh 5339-35-97 to LatLng", () => {
   const mesh = "5339-35-97";
   const expected = {
     lat: (53 + (3 + 9 / 10) / 8) / 1.5 + 1 / 240,
-    lng: 39 + (5 + 7 / 10) / 8 + 100 + 1 / 160
+    lng: 39 + (5 + 7 / 10) / 8 + 100 + 1 / 160,
   };
   expect(toCenterLatLng(mesh)).toEqual(expected);
 });
@@ -139,12 +139,12 @@ test("Should convert mesh 5339 to bounds", () => {
   const expected = {
     leftTop: {
       lat: 53 / 1.5 + 2 / 3,
-      lng: 39 + 100
+      lng: 39 + 100,
     },
     rightBottom: {
       lat: 53 / 1.5,
-      lng: 39 + 100 + 1
-    }
+      lng: 39 + 100 + 1,
+    },
   };
   expect(toBounds(meshCode)).toEqual(expected);
 });
@@ -165,12 +165,12 @@ test("Should convert mesh 5339-35 to bounds", () => {
   const expected = {
     leftTop: {
       lat: lat + 1 / 12,
-      lng
+      lng,
     },
     rightBottom: {
       lat,
-      lng: lng + 1 / 8
-    }
+      lng: lng + 1 / 8,
+    },
   };
   expect(toBounds(mesh)).toEqual(expected);
 });
@@ -200,12 +200,12 @@ test("Should convert mesh 5339-35-97 to bounds", () => {
   const expected = {
     leftTop: {
       lat: lat + 1 / 120,
-      lng
+      lng,
     },
     rightBottom: {
       lat,
-      lng: lng + 1 / 80
-    }
+      lng: lng + 1 / 80,
+    },
   };
   expect(toBounds(mesh)).toEqual(expected);
 });
