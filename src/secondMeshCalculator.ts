@@ -5,7 +5,7 @@ import {
   calcPrevPoints,
   FIRST_MAX_DIGIT,
   LatLng,
-  SECOND_MAX_DIGIT
+  SECOND_MAX_DIGIT,
 } from "./meshCalculator";
 
 export function toCenterLatLng(meshCode: string): LatLng {
@@ -31,7 +31,7 @@ Actual mesh code is "${meshCode}".`
 
   return {
     lat: (y1 + y2 / 8) / 1.5 + 1 / 24,
-    lng: x1 + x2 / 8 + 100 + 1 / 16
+    lng: x1 + x2 / 8 + 100 + 1 / 16,
   };
 }
 
@@ -62,7 +62,7 @@ Actual mesh code is "${meshCode}".`
 
   return {
     leftTop: { lat: cy + 1 / 12, lng: cx },
-    rightBottom: { lat: cy, lng: cx + 1 / 8 }
+    rightBottom: { lat: cy, lng: cx + 1 / 8 },
   };
 }
 
@@ -96,7 +96,7 @@ Actual mesh code is "${meshCode}".`
   const calcOffsetY = offsetY > 0 ? calcNextPoints : calcPrevPoints;
   let ys = [
     { value: y1, maxDigit: FIRST_MAX_DIGIT },
-    { value: y2, maxDigit: SECOND_MAX_DIGIT }
+    { value: y2, maxDigit: SECOND_MAX_DIGIT },
   ];
   Array(Math.abs(offsetY))
     .fill(0)
@@ -107,7 +107,7 @@ Actual mesh code is "${meshCode}".`
   const calcOffsetX = offsetX > 0 ? calcNextPoints : calcPrevPoints;
   let xs = [
     { value: x1, maxDigit: FIRST_MAX_DIGIT },
-    { value: x2, maxDigit: SECOND_MAX_DIGIT }
+    { value: x2, maxDigit: SECOND_MAX_DIGIT },
   ];
   Array(Math.abs(offsetX))
     .fill(0)

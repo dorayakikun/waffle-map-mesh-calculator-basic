@@ -6,7 +6,7 @@ import {
   LatLng,
   Point,
   SECOND_MAX_DIGIT,
-  THIRD_MAX_DIGIT
+  THIRD_MAX_DIGIT,
 } from "./meshCalculator";
 import { toMeshCode as latLngToSecondMesh } from "./secondMeshCalculator";
 
@@ -36,7 +36,7 @@ Actual mesh code is "${meshCode}".`
 
   return {
     lat: (y1 + (y2 + y3 / 10) / 8) / 1.5 + 1 / 240,
-    lng: x1 + (x2 + x3 / 10) / 8 + 100 + 1 / 160
+    lng: x1 + (x2 + x3 / 10) / 8 + 100 + 1 / 160,
   };
 }
 
@@ -69,7 +69,7 @@ Actual mesh code is "${meshCode}".`
 
   return {
     leftTop: { lat: cy + 1 / 120, lng: cx },
-    rightBottom: { lat: cy, lng: cx + 1 / 80 }
+    rightBottom: { lat: cy, lng: cx + 1 / 80 },
   };
 }
 
@@ -106,7 +106,7 @@ Actual mesh code is "${meshCode}".`
   let ys: Point[] = [
     { value: y1, maxDigit: FIRST_MAX_DIGIT },
     { value: y2, maxDigit: SECOND_MAX_DIGIT },
-    { value: y3, maxDigit: THIRD_MAX_DIGIT }
+    { value: y3, maxDigit: THIRD_MAX_DIGIT },
   ];
 
   Array(Math.abs(offsetY))
@@ -119,7 +119,7 @@ Actual mesh code is "${meshCode}".`
   let xs: Point[] = [
     { value: x1, maxDigit: FIRST_MAX_DIGIT },
     { value: x2, maxDigit: SECOND_MAX_DIGIT },
-    { value: x3, maxDigit: THIRD_MAX_DIGIT }
+    { value: x3, maxDigit: THIRD_MAX_DIGIT },
   ];
   Array(Math.abs(offsetX))
     .fill(0)

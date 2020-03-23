@@ -2,21 +2,21 @@ import {
   offset as offsetFirstMeshCode,
   toBounds as firstMeshCodeToBounds,
   toCenterLatLng as firstMeshCodeToCenterLatLng,
-  toMeshCode as toFirstMeshCode
+  toMeshCode as toFirstMeshCode,
 } from "./firstMeshCalculator";
 
 import {
   offset as offsetSecondMeshCode,
   toBounds as secondMeshCodeToBounds,
   toCenterLatLng as secondMeshCodeToLatLng,
-  toMeshCode as toSecondMeshCode
+  toMeshCode as toSecondMeshCode,
 } from "./secondMeshCalculator";
 
 import {
   offset as offsetThirdMeshCode,
   toBounds as thirdMeshCodeToBounds,
   toCenterLatLng as thirdMeshCodeToLatLng,
-  toMeshCode as latLngToThirdMesh
+  toMeshCode as latLngToThirdMesh,
 } from "./thirdMeshCalculator";
 
 export interface LatLng {
