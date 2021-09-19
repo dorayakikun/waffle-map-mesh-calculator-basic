@@ -27,7 +27,7 @@
   "author": "dorayakikun <amakunai.dorayaki@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@types/jest": "^26.0.0",
+    "@types/jest": "^27.0.0",
     "@typescript-eslint/eslint-plugin": "^4.0.0",
     "@typescript-eslint/parser": "^4.0.0",
     "esbuild": "^0.12.28",
