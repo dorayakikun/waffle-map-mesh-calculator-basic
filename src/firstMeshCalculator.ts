@@ -8,8 +8,8 @@ Only numbers are acceptable.
 Actual mesh code is "${meshCode}".`
     );
   }
-  const y1 = parseInt(meshCode.substr(0, 2), 10);
-  const x1 = parseInt(meshCode.substr(2), 10);
+  const y1 = Number(meshCode.substring(0, 2));
+  const x1 = Number(meshCode.substring(2));
   return {
     lat: y1 / 1.5 + 1 / 3,
     lng: x1 + 100 + 1 / 2,
@@ -25,8 +25,8 @@ Actual mesh code is "${meshCode}".`
     );
   }
 
-  const y1 = parseInt(meshCode.substr(0, 2), 10);
-  const x1 = parseInt(meshCode.substr(2, 2), 10);
+  const y1 = Number(meshCode.substring(0, 2));
+  const x1 = Number(meshCode.substring(2, 4));
   const cy = y1 / 1.5;
   const cx = x1 + 100;
 
@@ -55,8 +55,8 @@ Actual mesh code is "${meshCode}".`
     );
   }
 
-  const y1 = parseInt(meshCode.substr(0, 2), 10);
-  const x1 = parseInt(meshCode.substr(2), 10);
+  const y1 = Number(meshCode.substring(0, 2));
+  const x1 = Number(meshCode.substring(2));
 
   return `${y1 + offsetY}${x1 + offsetX}`;
 }

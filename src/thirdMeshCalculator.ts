@@ -19,12 +19,12 @@ Actual mesh code is "${meshCode}".`
     );
   }
 
-  const y1 = parseInt(meshCode.substr(0, 2), 10);
-  const x1 = parseInt(meshCode.substr(2, 2), 10);
-  const y2 = parseInt(meshCode.substr(4, 1), 10);
-  const x2 = parseInt(meshCode.substr(5, 1), 10);
-  const y3 = parseInt(meshCode.substr(6, 1), 10);
-  const x3 = parseInt(meshCode.substr(7), 10);
+  const y1 = Number(meshCode.substring(0, 2));
+  const x1 = Number(meshCode.substring(2, 4));
+  const y2 = Number(meshCode.substring(4, 5));
+  const x2 = Number(meshCode.substring(5, 6));
+  const y3 = Number(meshCode.substring(6, 7));
+  const x3 = Number(meshCode.substring(7));
 
   if (y2 > 7 || x2 > 7) {
     throw new Error(
@@ -49,12 +49,12 @@ Actual mesh code is "${meshCode}".`
     );
   }
 
-  const y1 = parseInt(meshCode.substr(0, 2), 10);
-  const x1 = parseInt(meshCode.substr(2, 2), 10);
-  const y2 = parseInt(meshCode.substr(4, 1), 10);
-  const x2 = parseInt(meshCode.substr(5, 1), 10);
-  const y3 = parseInt(meshCode.substr(6, 1), 10);
-  const x3 = parseInt(meshCode.substr(7), 10);
+  const y1 = Number(meshCode.substring(0, 2));
+  const x1 = Number(meshCode.substring(2, 4));
+  const y2 = Number(meshCode.substring(4, 5));
+  const x2 = Number(meshCode.substring(5, 6));
+  const y3 = Number(meshCode.substring(6, 7));
+  const x3 = Number(meshCode.substring(7));
 
   if (y2 > 7 || x2 > 7) {
     throw new Error(
@@ -95,12 +95,12 @@ Actual mesh code is "${meshCode}".`
     );
   }
 
-  const y1 = parseInt(meshCode.substr(0, 2), 10);
-  const x1 = parseInt(meshCode.substr(2, 2), 10);
-  const y2 = parseInt(meshCode.substr(4, 1), 10);
-  const x2 = parseInt(meshCode.substr(5, 1), 10);
-  const y3 = parseInt(meshCode.substr(6, 1), 10);
-  const x3 = parseInt(meshCode.substr(7), 10);
+  const y1 = Number(meshCode.substring(0, 2));
+  const x1 = Number(meshCode.substring(2, 4));
+  const y2 = Number(meshCode.substring(4, 5));
+  const x2 = Number(meshCode.substring(5, 6));
+  const y3 = Number(meshCode.substring(6, 7));
+  const x3 = Number(meshCode.substring(7));
 
   const calcOffsetY = offsetY > 0 ? calcNextPoints : calcPrevPoints;
   let ys: Point[] = [
