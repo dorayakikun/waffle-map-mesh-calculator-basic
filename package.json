@@ -15,7 +15,7 @@
     "build": "tsc -d",
     "fix": "eslint --fix --ext .ts .",
     "lint": "eslint --ext .ts .",
-    "prepare": "yarn build",
+    "prepare": "npm run build",
     "test": "jest",
     "typecheck": "tsc -p . --noEmit"
   },
