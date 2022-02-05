@@ -151,7 +151,7 @@ test("Should convert mesh 5339 to bounds", () => {
     },
   };
   const ret = toBounds(meshCode);
-  
+
   expect(ret.leftTop.lat).toBeCloseTo(expected.leftTop.lat);
   expect(ret.leftTop.lng).toBeCloseTo(expected.leftTop.lng);
 
@@ -183,7 +183,7 @@ test("Should convert mesh 5339-35 to bounds", () => {
     },
   };
   const ret = toBounds(mesh);
-  
+
   expect(ret.leftTop.lat).toBeCloseTo(expected.leftTop.lat);
   expect(ret.leftTop.lng).toBeCloseTo(expected.leftTop.lng);
 
@@ -224,7 +224,7 @@ test("Should convert mesh 5339-35-97 to bounds", () => {
     },
   };
   const ret = toBounds(mesh);
-  
+
   expect(ret.leftTop.lat).toBeCloseTo(expected.leftTop.lat);
   expect(ret.leftTop.lng).toBeCloseTo(expected.leftTop.lng);
 
