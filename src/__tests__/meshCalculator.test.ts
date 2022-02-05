@@ -65,7 +65,9 @@ test("Should convert mesh 5339-35 to LatLng", () => {
     lat: (53 + 3 / 8) / 1.5 + 1 / 24,
     lng: 39 + 5 / 8 + 100 + 1 / 16,
   };
-  expect(toCenterLatLng(mesh)).toEqual(expected);
+  const ret = toCenterLatLng(mesh);
+  expect(ret.lat).toBeCloseTo(expected.lat);
+  expect(ret.lng).toBeCloseTo(expected.lng);
 });
 
 test("Should throw an error when mesh is 5339-3a", () => {
@@ -92,7 +94,9 @@ test("Should convert mesh 5339-35-97 to LatLng", () => {
     lat: (53 + (3 + 9 / 10) / 8) / 1.5 + 1 / 240,
     lng: 39 + (5 + 7 / 10) / 8 + 100 + 1 / 160,
   };
-  expect(toCenterLatLng(mesh)).toEqual(expected);
+  const ret = toCenterLatLng(mesh);
+  expect(ret.lat).toBeCloseTo(expected.lat);
+  expect(ret.lng).toBeCloseTo(expected.lng);
 });
 
 test("Should throw an error when mesh is 5339-38-97", () => {
@@ -146,7 +150,13 @@ test("Should convert mesh 5339 to bounds", () => {
       lng: 39 + 100 + 1,
     },
   };
-  expect(toBounds(meshCode)).toEqual(expected);
+  const ret = toBounds(meshCode);
+  
+  expect(ret.leftTop.lat).toBeCloseTo(expected.leftTop.lat);
+  expect(ret.leftTop.lng).toBeCloseTo(expected.leftTop.lng);
+
+  expect(ret.rightBottom.lat).toBeCloseTo(expected.rightBottom.lat);
+  expect(ret.rightBottom.lng).toBeCloseTo(expected.rightBottom.lng);
 });
 
 test("Should throw error when mesh is 533a", () => {
@@ -172,7 +182,13 @@ test("Should convert mesh 5339-35 to bounds", () => {
       lng: lng + 1 / 8,
     },
   };
-  expect(toBounds(mesh)).toEqual(expected);
+  const ret = toBounds(mesh);
+  
+  expect(ret.leftTop.lat).toBeCloseTo(expected.leftTop.lat);
+  expect(ret.leftTop.lng).toBeCloseTo(expected.leftTop.lng);
+
+  expect(ret.rightBottom.lat).toBeCloseTo(expected.rightBottom.lat);
+  expect(ret.rightBottom.lng).toBeCloseTo(expected.rightBottom.lng);
 });
 
 test("Should throw error when mesh is 5339-3a", () => {
@@ -207,7 +223,13 @@ test("Should convert mesh 5339-35-97 to bounds", () => {
       lng: lng + 1 / 80,
     },
   };
-  expect(toBounds(mesh)).toEqual(expected);
+  const ret = toBounds(mesh);
+  
+  expect(ret.leftTop.lat).toBeCloseTo(expected.leftTop.lat);
+  expect(ret.leftTop.lng).toBeCloseTo(expected.leftTop.lng);
+
+  expect(ret.rightBottom.lat).toBeCloseTo(expected.rightBottom.lat);
+  expect(ret.rightBottom.lng).toBeCloseTo(expected.rightBottom.lng);
 });
 
 test("Should throw error when mesh is 5339-38-97", () => {
