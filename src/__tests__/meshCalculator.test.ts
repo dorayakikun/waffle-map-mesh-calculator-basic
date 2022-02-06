@@ -321,7 +321,7 @@ test("Should pan 533900 to 533900", () => {
   expect(offset("533900", 0, 0)).toBe("533900");
 });
 
-test("Should pan 533900 to 533912", () => {
+test("Should pan 533900 to 513962", () => {
   expect(offset("533900", 2, -10)).toBe("513962");
 });
 
