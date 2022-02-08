@@ -1,14 +1,10 @@
+import { FIRST_MAX_DIGIT, SECOND_MAX_DIGIT, THIRD_MAX_DIGIT } from "./constants";
 import {
-  Bounds,
   calcNextPoints,
   calcPrevPoints,
-  FIRST_MAX_DIGIT,
-  LatLng,
-  Point,
-  SECOND_MAX_DIGIT,
-  THIRD_MAX_DIGIT,
-} from "./meshCalculator";
+} from "./pointCalculator";
 import { toMeshCode as latLngToSecondMesh } from "./secondMeshCalculator";
+import { LatLng, Bounds, Point } from "./types";
 
 export function toCenterLatLng(meshCode: string): LatLng {
   if (!meshCode.match(/\d{8}/)) {

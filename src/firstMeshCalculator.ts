@@ -1,4 +1,4 @@
-import { Bounds, LatLng } from "./meshCalculator";
+import { Bounds, LatLng } from "./types";
 
 export function toCenterLatLng(meshCode: string): LatLng {
   if (!meshCode.match(/\d{4}/)) {

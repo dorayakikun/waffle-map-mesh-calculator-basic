@@ -18,24 +18,9 @@ import {
   toCenterLatLng as thirdMeshCodeToLatLng,
   toMeshCode as latLngToThirdMesh,
 } from "./thirdMeshCalculator";
-
-export interface LatLng {
-  lat: number;
-  lng: number;
-}
-export interface Bounds {
-  leftTop: LatLng;
-  rightBottom: LatLng;
-}
-export interface Point {
-  value: number;
-  maxDigit: number;
-}
+import { Bounds, LatLng, Point } from "./types";
 
 export const SCALES = [1, 2, 3];
-export const FIRST_MAX_DIGIT = 99;
-export const SECOND_MAX_DIGIT = 7;
-export const THIRD_MAX_DIGIT = 9;
 
 /**
  * Get the scale corresponding to zoom.
@@ -124,36 +109,6 @@ The scale range is [1-3].
 The actual scale is ${scale}.`
       );
   }
-}
-
-export function calcNextPoints(points: Point[]): Point[] {
-  const nextPoints = [...points];
-  const last = nextPoints.length - 1;
-  nextPoints[last].value++;
-  for (let i = last; i > 0; i--) {
-    if (nextPoints[i].value > nextPoints[i].maxDigit) {
-      nextPoints[i].value = 0;
-      nextPoints[i - 1].value++;
-    } else {
-      break;
-    }
-  }
-  return nextPoints;
-}
-
-export function calcPrevPoints(points: Point[]): Point[] {
-  const prevPoints = [...points];
-  const last = prevPoints.length - 1;
-  prevPoints[last].value--;
-  for (let i = last; i > 0; i--) {
-    if (prevPoints[i].value < 0) {
-      prevPoints[i].value = prevPoints[i].maxDigit;
-      prevPoints[i - 1].value--;
-    } else {
-      break;
-    }
-  }
-  return prevPoints;
 }
 
 export function offset(mesh: string, offsetX: number, offsetY: number): string {
