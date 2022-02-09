@@ -1,8 +1,9 @@
-import { FIRST_MAX_DIGIT, SECOND_MAX_DIGIT, THIRD_MAX_DIGIT } from "./constants";
 import {
-  calcNextPoints,
-  calcPrevPoints,
-} from "./pointCalculator";
+  FIRST_MAX_DIGIT,
+  SECOND_MAX_DIGIT,
+  THIRD_MAX_DIGIT,
+} from "./constants";
+import { calcNextPoints, calcPrevPoints } from "./pointCalculator";
 import { toMeshCode as latLngToSecondMesh } from "./secondMeshCalculator";
 import { LatLng, Bounds, Point } from "./types";
 

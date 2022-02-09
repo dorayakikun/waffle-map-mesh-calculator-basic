@@ -1,10 +1,7 @@
 import { FIRST_MAX_DIGIT, SECOND_MAX_DIGIT } from "./constants";
 import { toMeshCode as latLngToFirstMesh } from "./firstMeshCalculator";
-import {
-  calcNextPoints,
-  calcPrevPoints,
-} from "./pointCalculator";
-import { Bounds, LatLng} from "./types";
+import { calcNextPoints, calcPrevPoints } from "./pointCalculator";
+import { Bounds, LatLng } from "./types";
 
 export function toCenterLatLng(meshCode: string): LatLng {
   if (!meshCode.match(/\d{6}/)) {

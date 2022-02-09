@@ -18,7 +18,7 @@ import {
   toCenterLatLng as thirdMeshCodeToLatLng,
   toMeshCode as latLngToThirdMesh,
 } from "./thirdMeshCalculator";
-import { Bounds, LatLng, Point } from "./types";
+import { Bounds, LatLng } from "./types";
 
 export const SCALES = [1, 2, 3];
 

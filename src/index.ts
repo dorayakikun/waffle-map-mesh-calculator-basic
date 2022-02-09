@@ -6,7 +6,4 @@ export {
   toMeshCode,
   offset,
 } from "./meshCalculator";
-export {
-  LatLng,
-  Bounds,
-} from "./types"
+export { LatLng, Bounds } from "./types";
