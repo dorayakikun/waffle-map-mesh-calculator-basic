@@ -1,9 +1,2 @@
-export {
-  SCALES,
-  scaleFrom,
-  toCenterLatLng,
-  toBounds,
-  toMeshCode,
-  offset,
-} from "./meshCalculator";
-export { LatLng, Bounds } from "./types";
+export { offset, scaleFrom, SCALES, toBounds, toCenterLatLng, toMeshCode } from "./meshCalculator";
+export { Bounds, LatLng } from "./types";

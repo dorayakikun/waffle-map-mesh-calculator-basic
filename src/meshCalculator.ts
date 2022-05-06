@@ -56,7 +56,7 @@ export function toCenterLatLng(meshCode: string): LatLng {
       throw new Error(
         `Invalid mesh code found.
 The length of the mesh code is 4, 6, or 8.
-The actual length is ${newMeshCode.length}, the mesh code is "${newMeshCode}".`
+The actual length is ${newMeshCode.length}, the mesh code is "${newMeshCode}".`,
       );
   }
 }
@@ -81,7 +81,7 @@ export function toBounds(meshCode: string): Bounds {
       throw new Error(
         `Invalid mesh code found.
 The length of the mesh code is 4, 6, or 8.
-The actual length is ${newMeshCode.length}, the mesh code is "${newMeshCode}".`
+The actual length is ${newMeshCode.length}, the mesh code is "${newMeshCode}".`,
       );
   }
 }
@@ -106,7 +106,7 @@ export function toMeshCode(lat: number, lng: number, scale: number): string {
       throw new Error(
         `Illegal scale found.
 The scale range is [1-3].
-The actual scale is ${scale}.`
+The actual scale is ${scale}.`,
       );
   }
 }
@@ -125,7 +125,7 @@ export function offset(mesh: string, offsetX: number, offsetY: number): string {
       throw new Error(
         `Invalid mesh code found.
 The length of the mesh code is 4, 6, or 8.
-The actual length is ${newMesh.length}, the mesh code is "${newMesh}".`
+The actual length is ${newMesh.length}, the mesh code is "${newMesh}".`,
       );
   }
 }
