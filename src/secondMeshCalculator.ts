@@ -8,7 +8,7 @@ export function toCenterLatLng(meshCode: string): LatLng {
     throw new Error(
       `Invalid mesh code found.
 Only numbers are acceptable.
-Actual mesh code is "${meshCode}".`
+Actual mesh code is "${meshCode}".`,
     );
   }
   const y1 = Number(meshCode.substring(0, 2));
@@ -20,7 +20,7 @@ Actual mesh code is "${meshCode}".`
     throw new Error(
       `Invalid mesh code found.
 Only [0-7] are acceptable in second division.
-Actual mesh code is "${meshCode}".`
+Actual mesh code is "${meshCode}".`,
     );
   }
 
@@ -35,7 +35,7 @@ export function toBounds(meshCode: string): Bounds {
     throw new Error(
       `Invalid mesh code found.
 Only numbers are acceptable.
-Actual mesh code is "${meshCode}".`
+Actual mesh code is "${meshCode}".`,
     );
   }
 
@@ -48,7 +48,7 @@ Actual mesh code is "${meshCode}".`
     throw new Error(
       `Invalid mesh code found.
 Only [0-7] are acceptable in second division.
-Actual mesh code is "${meshCode}".`
+Actual mesh code is "${meshCode}".`,
     );
   }
 
@@ -73,13 +73,13 @@ export function toMeshCode(lat: number, lng: number): string {
 export function offset(
   meshCode: string,
   offsetX: number,
-  offsetY: number
+  offsetY: number,
 ): string {
   if (!meshCode.match(/\d{6}/)) {
     throw new Error(
       `Invalid mesh code found.
 Only numbers are acceptable.
-Actual mesh code is "${meshCode}".`
+Actual mesh code is "${meshCode}".`,
     );
   }
 
