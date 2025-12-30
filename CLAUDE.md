@@ -14,11 +14,13 @@ npm run build          # Compile TypeScript to lib/
 
 # Testing
 npm test              # Run all tests with coverage
-jest <test-file>      # Run specific test file
+vitest run <test-file> # Run specific test file
+npm run test:watch    # Run tests in watch mode
 
 # Code Quality
-npm run fmt           # Format code with Deno formatter
-npm run lint          # Lint code with Deno
+npm run format        # Format code with Biome
+npm run lint          # Lint code with Biome
+npm run check         # Run Biome format + lint checks
 npm run typecheck     # Type check without emitting files
 
 # Prepare
@@ -61,8 +63,9 @@ The library implements a three-level hierarchical mesh system:
 
 ## Code Standards
 
-- Uses Deno for formatting/linting (configured in deno.jsonc)
+- Uses Biome for formatting/linting (configured in biome.json)
 - Strict TypeScript mode enabled
-- Jest with esbuild-jest for testing
+- Vitest with v8 coverage provider for testing
+- Property-based testing with fast-check for edge case validation
 - All mesh code inputs validated with regex patterns
 - Descriptive error messages include actual vs expected values
