@@ -3,8 +3,9 @@
 [![npm version](https://badge.fury.io/js/waffle-map-mesh-calculator-basic.svg)](https://www.npmjs.com/package/waffle-map-mesh-calculator-basic)
 [![npm](https://img.shields.io/npm/dw/waffle-map-mesh-calculator-basic.svg)](https://www.npmjs.com/package/waffle-map-mesh-calculator-basic)
 [![Known Vulnerabilities](https://snyk.io/test/github/dorayakikun/waffle-map-mesh-calculator-basic/badge.svg?style=flat-square)](https://snyk.io/test/github/dorayakikun/waffle-map-mesh-calculator-basic)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![tested with jest](https://img.shields.io/badge/tested_with-jest-99424f.svg)](https://github.com/facebook/jest)
+[![code style: biome](https://img.shields.io/badge/code_style-biome-60a5fa?style=flat-square&logo=biome)](https://biomejs.dev/)
+[![tested with vitest](https://img.shields.io/badge/tested_with-vitest-6E9F18?style=flat-square&logo=vitest)](https://vitest.dev/)
+[![Node CI](https://github.com/dorayakikun/waffle-map-mesh-calculator-basic/workflows/Node%20CI/badge.svg)](https://github.com/dorayakikun/waffle-map-mesh-calculator-basic/actions)
 
 The mesh calculator.It conforms to the standard rigional mesh.
 
