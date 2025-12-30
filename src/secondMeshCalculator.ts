@@ -1,8 +1,16 @@
 import { FIRST_MAX_DIGIT, SECOND_MAX_DIGIT } from "./constants";
 import { toMeshCode as latLngToFirstMesh } from "./firstMeshCalculator";
 import { calcNextPoints, calcPrevPoints } from "./pointCalculator";
-import { Bounds, LatLng } from "./types";
+import type { Bounds, LatLng } from "./types";
 
+/**
+ * Compute the geographic center of a 6-digit mesh code.
+ *
+ * @param meshCode - A 6-digit numeric mesh code where the first four digits are primary indices and the last two digits are second-division indices (each must be 0–7)
+ * @returns An object with `lat` and `lng` representing the center latitude and longitude of the mesh
+ * @throws Error if `meshCode` is not a six-digit numeric string
+ * @throws Error if either of the second-division digits (positions 5 or 6) is not between 0 and 7
+ */
 export function toCenterLatLng(meshCode: string): LatLng {
   if (!meshCode.match(/\d{6}/)) {
     throw new Error(
@@ -61,6 +69,13 @@ Actual mesh code is "${meshCode}".`,
   };
 }
 
+/**
+ * Produce the 6-digit mesh code for the given geographic coordinate.
+ *
+ * @param lat - Latitude in decimal degrees
+ * @param lng - Longitude in decimal degrees
+ * @returns The mesh code string composed of the primary mesh identifier, a hyphen, and two subdivision digits: vertical digit then horizontal digit (e.g. `XXXX-ytxh`)
+ */
 export function toMeshCode(lat: number, lng: number): string {
   const y1 = lat * 1.5;
   const x1 = lng - 100;
@@ -70,11 +85,16 @@ export function toMeshCode(lat: number, lng: number): string {
   return `${latLngToFirstMesh(lat, lng)}-${y2}${x2}`;
 }
 
-export function offset(
-  meshCode: string,
-  offsetX: number,
-  offsetY: number,
-): string {
+/**
+ * Compute the 6-digit mesh code produced by shifting an input mesh code by the specified horizontal and vertical offsets.
+ *
+ * @param meshCode - The original 6-digit numeric mesh code.
+ * @param offsetX - Horizontal offset in mesh units: positive moves to the next columns (east), negative to previous columns (west).
+ * @param offsetY - Vertical offset in mesh units: positive moves to the next rows (north), negative to previous rows (south).
+ * @returns The 6-digit mesh code after applying the horizontal and vertical offsets.
+ * @throws If `meshCode` is not a 6-digit numeric string.
+ */
+export function offset(meshCode: string, offsetX: number, offsetY: number): string {
   if (!meshCode.match(/\d{6}/)) {
     throw new Error(
       `Invalid mesh code found.

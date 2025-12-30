@@ -1,7 +1,7 @@
 import {
-  offset as offsetFirstMeshCode,
   toBounds as firstMeshCodeToBounds,
   toCenterLatLng as firstMeshCodeToCenterLatLng,
+  offset as offsetFirstMeshCode,
   toMeshCode as toFirstMeshCode,
 } from "./firstMeshCalculator";
 
@@ -13,12 +13,12 @@ import {
 } from "./secondMeshCalculator";
 
 import {
+  toMeshCode as latLngToThirdMesh,
   offset as offsetThirdMeshCode,
   toBounds as thirdMeshCodeToBounds,
   toCenterLatLng as thirdMeshCodeToLatLng,
-  toMeshCode as latLngToThirdMesh,
 } from "./thirdMeshCalculator";
-import { Bounds, LatLng } from "./types";
+import type { Bounds, LatLng } from "./types";
 
 export const SCALES = [1, 2, 3];
 
