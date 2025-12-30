@@ -62,3 +62,9 @@ typings/
 
 # Distribution directory
 lib
+# Claude Code
+.claude/
+
+# Vitest compiled config
+vitest.config.js
+vitest.config.d.ts

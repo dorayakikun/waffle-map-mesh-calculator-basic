@@ -1,4 +1,4 @@
-import { Point } from "./types";
+import type { Point } from "./types";
 
 export function calcNextPoints(points: Point[]): Point[] {
   const nextPoints = [...points];

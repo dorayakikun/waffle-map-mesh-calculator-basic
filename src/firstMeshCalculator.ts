@@ -1,4 +1,4 @@
-import { Bounds, LatLng } from "./types";
+import type { Bounds, LatLng } from "./types";
 
 export function toCenterLatLng(meshCode: string): LatLng {
   if (!meshCode.match(/\d{4}/)) {
@@ -42,11 +42,7 @@ export function toMeshCode(lat: number, lng: number): string {
   return y1 + x1;
 }
 
-export function offset(
-  meshCode: string,
-  offsetX: number,
-  offsetY: number,
-): string {
+export function offset(meshCode: string, offsetX: number, offsetY: number): string {
   if (!meshCode.match(/\d{4}/)) {
     throw new Error(
       `Invalid mesh code found.

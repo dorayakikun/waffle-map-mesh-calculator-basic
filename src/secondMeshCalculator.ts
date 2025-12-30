@@ -1,7 +1,7 @@
 import { FIRST_MAX_DIGIT, SECOND_MAX_DIGIT } from "./constants";
 import { toMeshCode as latLngToFirstMesh } from "./firstMeshCalculator";
 import { calcNextPoints, calcPrevPoints } from "./pointCalculator";
-import { Bounds, LatLng } from "./types";
+import type { Bounds, LatLng } from "./types";
 
 export function toCenterLatLng(meshCode: string): LatLng {
   if (!meshCode.match(/\d{6}/)) {
@@ -70,11 +70,7 @@ export function toMeshCode(lat: number, lng: number): string {
   return `${latLngToFirstMesh(lat, lng)}-${y2}${x2}`;
 }
 
-export function offset(
-  meshCode: string,
-  offsetX: number,
-  offsetY: number,
-): string {
+export function offset(meshCode: string, offsetX: number, offsetY: number): string {
   if (!meshCode.match(/\d{6}/)) {
     throw new Error(
       `Invalid mesh code found.
