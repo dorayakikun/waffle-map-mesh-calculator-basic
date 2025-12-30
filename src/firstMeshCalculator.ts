@@ -1,5 +1,12 @@
 import type { Bounds, LatLng } from "./types";
 
+/**
+ * Compute the geographic center latitude and longitude for a 4-digit mesh code.
+ *
+ * @param meshCode - A 4-digit numeric mesh code where the first two digits represent latitude index and the last two represent longitude index
+ * @returns An object with `lat` and `lng` representing the center coordinates of the mesh
+ * @throws Error if `meshCode` is not a 4-digit numeric string
+ */
 export function toCenterLatLng(meshCode: string): LatLng {
   if (!meshCode.match(/\d{4}/)) {
     throw new Error(
@@ -36,12 +43,28 @@ Actual mesh code is "${meshCode}".`,
   };
 }
 
+/**
+ * Convert geographic coordinates to a mesh code string identifying the grid cell that contains the point.
+ *
+ * @param lat - Latitude in decimal degrees
+ * @param lng - Longitude in decimal degrees
+ * @returns A mesh code string formed by concatenating the integer part of `lat * 1.5` and the integer part of `lng - 100`
+ */
 export function toMeshCode(lat: number, lng: number): string {
   const y1 = Math.trunc(lat * 1.5).toString();
   const x1 = Math.trunc(lng - 100).toString();
   return y1 + x1;
 }
 
+/**
+ * Produce a new mesh code by adding numeric offsets to the mesh code's two parts.
+ *
+ * @param meshCode - A 4-digit numeric mesh code where the first two digits are the latitude index and the last two are the longitude index
+ * @param offsetX - Value to add to the longitude index (last two digits)
+ * @param offsetY - Value to add to the latitude index (first two digits)
+ * @returns The resulting mesh code formed by concatenating the adjusted latitude index and longitude index
+ * @throws Error if `meshCode` is not a 4-digit numeric string
+ */
 export function offset(meshCode: string, offsetX: number, offsetY: number): string {
   if (!meshCode.match(/\d{4}/)) {
     throw new Error(
