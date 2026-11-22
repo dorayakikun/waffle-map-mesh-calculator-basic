@@ -39,6 +39,20 @@ function normalizePath(p) {
   return p.replace(/\\/g, "/");
 }
 
+function collectFiles(dir, predicate = () => true) {
+  if (!existsSync(dir)) return [];
+  const collected = [];
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const full = join(dir, entry.name);
+    if (entry.isDirectory()) {
+      collected.push(...collectFiles(full, predicate));
+    } else if (entry.isFile() && predicate(full)) {
+      collected.push(full);
+    }
+  }
+  return collected;
+}
+
 async function main() {
   const startedAt = performance.now();
   const cwd = process.cwd();
@@ -169,17 +183,13 @@ async function main() {
 
     const cache = opts.noCache ? { version: 1, entries: {} } : loadCache(cwd);
     const projectFingerprint = hashFiles([
-      ...DEFAULT_TARGETS.map((rel) => resolve(cwd, rel)),
-      resolve(cwd, "src/index.ts"),
-      resolve(cwd, "src/types.ts"),
+      ...collectFiles(resolve(cwd, "src"), (file) => !file.endsWith(".test.ts")),
+      ...collectFiles(resolve(cwd, "scripts/mutator")),
+      resolve(cwd, "scripts/mutator.mjs"),
       resolve(cwd, "vitest.config.mts"),
       resolve(cwd, "package.json"),
+      resolve(cwd, "package-lock.json"),
       resolve(cwd, "tsconfig.json"),
-      resolve(cwd, "scripts/mutator.mjs"),
-      resolve(cwd, "scripts/mutator/instrument.mjs"),
-      resolve(cwd, "scripts/mutator/cache.mjs"),
-      resolve(cwd, "scripts/mutator/diff.mjs"),
-      resolve(cwd, "scripts/mutator/setup.mjs"),
     ]);
     const testHashMemo = new Map();
     const results = new Map();
