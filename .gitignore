@@ -63,7 +63,11 @@ typings/
 # Distribution directory
 lib
 # Claude Code
-.claude/
+.claude/*
+!.claude/settings.json
+
+# Mutation testing
+.mutator/
 
 # Vitest compiled config
 vitest.config.js

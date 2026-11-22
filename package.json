@@ -1,14 +1,14 @@
 {
   "name": "waffle-map-mesh-calculator-basic",
   "version": "3.0.0",
-  "description": "The mesh calculator.It conforms to the standard rigional mesh.",
+  "description": "The mesh calculator. It conforms to the standard regional mesh.",
   "main": "lib/index.js",
   "files": [
     "lib"
   ],
   "types": "lib/index.d.ts",
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=22.12.0"
   },
   "repository": {
     "type": "git",
@@ -22,10 +22,14 @@
     "lint:fix": "biome lint --write .",
     "check": "biome check .",
     "check:fix": "biome check --write .",
+    "check:docs": "node scripts/check-docs-sync.mjs",
+    "check:comments": "node scripts/check-no-comments.mjs",
     "prepare": "npm run build",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
+    "test:mutation": "node scripts/mutator.mjs",
+    "test:mutation:diff": "node scripts/mutator.mjs --since origin/main",
     "typecheck": "tsc -p . --noEmit"
   },
   "keywords": [
@@ -36,11 +40,11 @@
   "author": "dorayakikun <amakunai.dorayaki@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "@biomejs/biome": "^2.3.10",
-    "@vitest/coverage-v8": "^4.0.16",
-    "esbuild": "^0.27.2",
-    "fast-check": "^4.5.2",
-    "typescript": "^5.9.3",
-    "vitest": "^4.0.16"
+    "@biomejs/biome": "^2.6.8",
+    "@vitest/coverage-v8": "^5.1.1",
+    "fast-check": "^4.11.0",
+    "oxc-parser": "^0.159.0",
+    "typescript": "^7.0.2",
+    "vitest": "^5.1.1"
   }
 }
