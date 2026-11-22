@@ -2,18 +2,6 @@ import * as fc from "fast-check";
 import { describe, expect, test } from "vitest";
 import { toBounds, toCenterLatLng, toMeshCode } from "../meshCalculator";
 
-/**
- * Property-based tests for the Japanese Standard Regional Mesh system (JIS X 0410).
- *
- * The tests use the documented Japanese mesh standard coordinate ranges:
- * - Latitude: 20°N to 46°N (covers Japan from Okinawa to Hokkaido)
- * - Longitude: 122°E to 154°E (covers Japan from westernmost to easternmost points)
- *
- * Note: While the implementation mathematically supports a broader range
- * (lat 0-66.67, lng 100-199.99 based on the mesh code calculation formula),
- * these tests focus on the documented standard to ensure correctness for the
- * primary use case: Japanese geographic data.
- */
 describe("meshCalculator - Property Based Testing", () => {
   describe("toMeshCode と toCenterLatLng の可逆性", () => {
     test("scale 1: toMeshCode → toCenterLatLng → toMeshCode で元に戻る", () => {
