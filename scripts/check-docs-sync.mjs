@@ -53,12 +53,17 @@ for (const hookConfig of [
 const scripts = pkg.scripts ?? {};
 const scriptNames = Object.keys(scripts);
 
+const agentsReferencedScripts = new Set();
+
 for (const [docName, content] of [
   ["AGENTS.md", agentsMd],
   ["README.md", readmeMd],
 ]) {
   for (const match of content.matchAll(/\bnpm run ([a-zA-Z0-9:_-]+)/g)) {
     const scriptName = match[1];
+    if (docName === "AGENTS.md") {
+      agentsReferencedScripts.add(scriptName);
+    }
     if (!Object.hasOwn(scripts, scriptName)) {
       errors.push(`${docName} references unknown npm script "npm run ${scriptName}".`);
     }
@@ -67,9 +72,14 @@ for (const [docName, content] of [
 
 for (const scriptName of scriptNames) {
   if (scriptName === "prepare") continue;
-  const cmd = scriptName === "test" ? "npm test" : `npm run ${scriptName}`;
-  if (!agentsMd.includes(cmd)) {
-    errors.push(`AGENTS.md is missing package.json script "${cmd}".`);
+  if (scriptName === "test") {
+    if (!/\bnpm test\b/.test(agentsMd)) {
+      errors.push('AGENTS.md is missing package.json script "npm test".');
+    }
+    continue;
+  }
+  if (!agentsReferencedScripts.has(scriptName)) {
+    errors.push(`AGENTS.md is missing package.json script "npm run ${scriptName}".`);
   }
 }
 

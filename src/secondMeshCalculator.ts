@@ -1,6 +1,6 @@
 import { FIRST_MAX_DIGIT, SECOND_MAX_DIGIT } from "./constants";
 import { toMeshCode as latLngToFirstMesh } from "./firstMeshCalculator";
-import { calcNextPoints, calcPrevPoints } from "./pointCalculator";
+import { offsetPoints } from "./pointCalculator";
 import type { Bounds, LatLng } from "./types";
 
 export function toCenterLatLng(meshCode: string): LatLng {
@@ -63,10 +63,9 @@ Actual mesh code is "${meshCode}".`,
 
 export function toMeshCode(lat: number, lng: number): string {
   const y1 = lat * 1.5;
-  const x1 = lng - 100;
 
   const y2 = `${Math.trunc((y1 - Math.trunc(y1)) * 8)}`;
-  const x2 = `${Math.trunc((x1 - Math.trunc(x1)) * 8)}`;
+  const x2 = `${Math.trunc((lng - Math.trunc(lng)) * 8)}`;
   return `${latLngToFirstMesh(lat, lng)}-${y2}${x2}`;
 }
 
@@ -84,27 +83,20 @@ Actual mesh code is "${meshCode}".`,
   const y2 = Number(meshCode.substring(4, 5));
   const x2 = Number(meshCode.substring(5));
 
-  const calcOffsetY = offsetY > 0 ? calcNextPoints : calcPrevPoints;
-  let ys = [
-    { value: y1, maxDigit: FIRST_MAX_DIGIT },
-    { value: y2, maxDigit: SECOND_MAX_DIGIT },
-  ];
-  Array(Math.abs(offsetY))
-    .fill(0)
-    .forEach(() => {
-      ys = calcOffsetY(ys);
-    });
-
-  const calcOffsetX = offsetX > 0 ? calcNextPoints : calcPrevPoints;
-  let xs = [
-    { value: x1, maxDigit: FIRST_MAX_DIGIT },
-    { value: x2, maxDigit: SECOND_MAX_DIGIT },
-  ];
-  Array(Math.abs(offsetX))
-    .fill(0)
-    .forEach(() => {
-      xs = calcOffsetX(xs);
-    });
+  const ys = offsetPoints(
+    [
+      { value: y1, maxDigit: FIRST_MAX_DIGIT },
+      { value: y2, maxDigit: SECOND_MAX_DIGIT },
+    ],
+    offsetY,
+  );
+  const xs = offsetPoints(
+    [
+      { value: x1, maxDigit: FIRST_MAX_DIGIT },
+      { value: x2, maxDigit: SECOND_MAX_DIGIT },
+    ],
+    offsetX,
+  );
 
   return `${ys[0].value}${xs[0].value}${ys[1].value}${xs[1].value}`;
 }

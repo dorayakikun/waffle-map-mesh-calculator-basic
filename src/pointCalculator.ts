@@ -29,3 +29,25 @@ export function calcPrevPoints(points: Point[]): Point[] {
   }
   return prevPoints;
 }
+
+export function offsetPoints(points: Point[], delta: number): Point[] {
+  const count = Math.abs(delta);
+  let current = points;
+  switch (Math.sign(delta)) {
+    case 1:
+      Array(count)
+        .fill(0)
+        .forEach(() => {
+          current = calcNextPoints(current);
+        });
+      break;
+    case -1:
+      Array(count)
+        .fill(0)
+        .forEach(() => {
+          current = calcPrevPoints(current);
+        });
+      break;
+  }
+  return current;
+}

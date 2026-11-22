@@ -323,6 +323,10 @@ Actual mesh code is "${mesh}".`,
       expect(offset("533900", 2, -10)).toBe("513962");
     });
 
+    test("Should pan 533900 west to 533806", () => {
+      expect(offset("533900", -2, 0)).toBe("533806");
+    });
+
     test("Should throw error when mesh is 53390a", () => {
       const mesh = "53390a";
       expect(() => offset(mesh, -5, 0)).toThrow(
@@ -342,6 +346,10 @@ Actual mesh code is "${mesh}".`,
 
     test("Should offset 53397080 to 54360000", () => {
       expect(offset("53397080", -20, 2)).toBe("54380600");
+    });
+
+    test("Should offset 53397080 south to 53396090", () => {
+      expect(offset("53397080", 0, -9)).toBe("53396090");
     });
 
     test("Should throw error when mesh is 5339000a", () => {

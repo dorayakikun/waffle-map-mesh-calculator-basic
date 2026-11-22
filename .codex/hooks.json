@@ -5,7 +5,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "node scripts/agent-stop-hook.mjs --format=codex"
+            "command": "node \"$(git rev-parse --show-toplevel)/scripts/agent-stop-hook.mjs\" --format=codex"
           }
         ]
       }

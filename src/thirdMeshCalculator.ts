@@ -1,7 +1,7 @@
 import { FIRST_MAX_DIGIT, SECOND_MAX_DIGIT, THIRD_MAX_DIGIT } from "./constants";
-import { calcNextPoints, calcPrevPoints } from "./pointCalculator";
+import { offsetPoints } from "./pointCalculator";
 import { toMeshCode as latLngToSecondMesh } from "./secondMeshCalculator";
-import type { Bounds, LatLng, Point } from "./types";
+import type { Bounds, LatLng } from "./types";
 
 export function toCenterLatLng(meshCode: string): LatLng {
   if (!meshCode.match(/\d{8}/)) {
@@ -67,8 +67,8 @@ Actual mesh code is "${meshCode}".`,
 }
 
 export function toMeshCode(lat: number, lng: number): string {
-  const y2 = (lat * 1.5 - Math.trunc(lat * 1.5)) * 8;
-  const x2 = (lng - 100 - Math.trunc(lng - 100)) * 8;
+  const y2 = lat * 12;
+  const x2 = lng * 8;
 
   const y3 = `${Math.trunc((y2 - Math.trunc(y2)) * 10)}`;
   const x3 = `${Math.trunc((x2 - Math.trunc(x2)) * 10)}`;
@@ -91,30 +91,22 @@ Actual mesh code is "${meshCode}".`,
   const y3 = Number(meshCode.substring(6, 7));
   const x3 = Number(meshCode.substring(7));
 
-  const calcOffsetY = offsetY > 0 ? calcNextPoints : calcPrevPoints;
-  let ys: Point[] = [
-    { value: y1, maxDigit: FIRST_MAX_DIGIT },
-    { value: y2, maxDigit: SECOND_MAX_DIGIT },
-    { value: y3, maxDigit: THIRD_MAX_DIGIT },
-  ];
-
-  Array(Math.abs(offsetY))
-    .fill(0)
-    .forEach(() => {
-      ys = calcOffsetY(ys);
-    });
-
-  const calcOffsetX = offsetX > 0 ? calcNextPoints : calcPrevPoints;
-  let xs: Point[] = [
-    { value: x1, maxDigit: FIRST_MAX_DIGIT },
-    { value: x2, maxDigit: SECOND_MAX_DIGIT },
-    { value: x3, maxDigit: THIRD_MAX_DIGIT },
-  ];
-  Array(Math.abs(offsetX))
-    .fill(0)
-    .forEach(() => {
-      xs = calcOffsetX(xs);
-    });
+  const ys = offsetPoints(
+    [
+      { value: y1, maxDigit: FIRST_MAX_DIGIT },
+      { value: y2, maxDigit: SECOND_MAX_DIGIT },
+      { value: y3, maxDigit: THIRD_MAX_DIGIT },
+    ],
+    offsetY,
+  );
+  const xs = offsetPoints(
+    [
+      { value: x1, maxDigit: FIRST_MAX_DIGIT },
+      { value: x2, maxDigit: SECOND_MAX_DIGIT },
+      { value: x3, maxDigit: THIRD_MAX_DIGIT },
+    ],
+    offsetX,
+  );
 
   return `${ys[0].value}${xs[0].value}${ys[1].value}${xs[1].value}${ys[2].value}${xs[2].value}`;
 }

@@ -95,6 +95,7 @@ export function instrumentFile(relPath, code, startId = 1) {
   function registerMutant(node, mutator, replacement, scopeStack, astPath) {
     const id = nextId++;
     const loc = offsetToLineCol(lineStarts, node.start);
+    const endLoc = offsetToLineCol(lineStarts, Math.max(node.start, node.end - 1));
     const scope = scopeStack[scopeStack.length - 1];
     const original = code.slice(node.start, node.end);
     const identity = sha256(
@@ -105,6 +106,7 @@ export function instrumentFile(relPath, code, startId = 1) {
       identity,
       file: relPath,
       line: loc.line,
+      endLine: endLoc.line,
       column: loc.column,
       scopePath: scope.path,
       fnHash: scope.hash,
@@ -216,7 +218,7 @@ export function instrumentFile(relPath, code, startId = 1) {
             registerMutant(
               node,
               "BinaryOperator",
-              `(${leftSrc} ${op} ${rightSrc})`,
+              `((${leftSrc}) ${op} (${rightSrc}))`,
               scopeStack,
               `${astPath}#bin:${op}`,
             ),
@@ -233,7 +235,7 @@ export function instrumentFile(relPath, code, startId = 1) {
             registerMutant(
               node,
               "LogicalOperator",
-              `(${leftSrc} ${op} ${rightSrc})`,
+              `((${leftSrc}) ${op} (${rightSrc}))`,
               scopeStack,
               `${astPath}#log:${op}`,
             ),

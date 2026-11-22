@@ -61,7 +61,15 @@ async function main() {
   let selectedMutants = allMutants;
   if (opts.since) {
     const changedLines = getChangedLinesSince(opts.since, cwd);
-    selectedMutants = allMutants.filter((m) => changedLines.get(m.file)?.has(m.line));
+    selectedMutants = allMutants.filter((m) => {
+      const fileLines = changedLines.get(m.file);
+      if (!fileLines) return false;
+      const endLine = m.endLine ?? m.line;
+      for (let line = m.line; line <= endLine; line++) {
+        if (fileLines.has(line)) return true;
+      }
+      return false;
+    });
     console.log(
       `[mutator] Diff mode (--since ${opts.since}): ${selectedMutants.length}/${allMutants.length} mutants in diff.`,
     );
@@ -101,6 +109,8 @@ async function main() {
       silent: true,
       reporters: [],
       bail: 1,
+      testTimeout: 5000,
+      fsModuleCache: false,
       coverage: { enabled: false },
       setupFiles: [setupFile],
     },
@@ -119,10 +129,18 @@ async function main() {
     const dryStart = performance.now();
     const dryResult = await vitest.runTestSpecifications(allSpecs);
     const baselineFailed = dryResult.testModules.filter((m) => !m.ok());
-    if (baselineFailed.length > 0) {
-      console.error(
-        `[mutator] Baseline tests failed (${baselineFailed.map((m) => relative(cwd, m.moduleId)).join(", ")}). Aborting.`,
-      );
+    const baselineUnhandled = dryResult.unhandledErrors ?? [];
+    if (baselineFailed.length > 0 || baselineUnhandled.length > 0) {
+      if (baselineFailed.length > 0) {
+        console.error(
+          `[mutator] Baseline tests failed (${baselineFailed.map((m) => relative(cwd, m.moduleId)).join(", ")}). Aborting.`,
+        );
+      }
+      if (baselineUnhandled.length > 0) {
+        console.error(
+          `[mutator] Baseline tests reported ${baselineUnhandled.length} unhandled error(s). Aborting.`,
+        );
+      }
       process.exitCode = 1;
       return;
     }
@@ -150,6 +168,19 @@ async function main() {
     }
 
     const cache = opts.noCache ? { version: 1, entries: {} } : loadCache(cwd);
+    const projectFingerprint = hashFiles([
+      ...DEFAULT_TARGETS.map((rel) => resolve(cwd, rel)),
+      resolve(cwd, "src/index.ts"),
+      resolve(cwd, "src/types.ts"),
+      resolve(cwd, "vitest.config.mts"),
+      resolve(cwd, "package.json"),
+      resolve(cwd, "tsconfig.json"),
+      resolve(cwd, "scripts/mutator.mjs"),
+      resolve(cwd, "scripts/mutator/instrument.mjs"),
+      resolve(cwd, "scripts/mutator/cache.mjs"),
+      resolve(cwd, "scripts/mutator/diff.mjs"),
+      resolve(cwd, "scripts/mutator/setup.mjs"),
+    ]);
     const testHashMemo = new Map();
     const results = new Map();
     let cacheHits = 0;
@@ -172,7 +203,7 @@ async function main() {
       const testKey = testPaths.join("|");
       let coveringHash = testHashMemo.get(testKey);
       if (!coveringHash) {
-        coveringHash = hashFiles(testPaths);
+        coveringHash = `${hashFiles(testPaths)}:${projectFingerprint}`;
         testHashMemo.set(testKey, coveringHash);
       }
 
@@ -189,7 +220,15 @@ async function main() {
         const spec = specByPath.get(testPath);
         if (!spec) continue;
         const runRes = await vitest.runTestSpecifications([spec]);
-        if (runRes.testModules.some((m) => !m.ok())) {
+        const specModules = runRes.testModules.filter(
+          (m) =>
+            normalizePath(m.moduleId) === testPath &&
+            (!spec.project || m.project === spec.project || m.project?.name === spec.project?.name),
+        );
+        if (
+          specModules.some((m) => !m.ok()) ||
+          (runRes.unhandledErrors?.length ?? 0) > 0
+        ) {
           status = "Killed";
           break;
         }

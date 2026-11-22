@@ -24,7 +24,13 @@ function allowStop() {
 
 if (format === "agy") {
   if (input.continuationActive === true) allowStop();
-  if (input.terminationReason && input.terminationReason !== "NO_TOOL_CALL") allowStop();
+  if (
+    input.terminationReason &&
+    input.terminationReason !== "NO_TOOL_CALL" &&
+    input.terminationReason !== "model_stop"
+  ) {
+    allowStop();
+  }
 } else if (format === "claude" || format === "codex") {
   if (input.stop_hook_active === true) allowStop();
 } else if (format === "cursor") {

@@ -5,11 +5,15 @@ import { resolve } from "node:path";
 import { parseSync } from "oxc-parser";
 
 const root = process.cwd();
-const files = execFileSync("git", ["ls-files", "--cached", "--others", "--exclude-standard"], {
-  cwd: root,
-  encoding: "utf8",
-})
-  .split("\n")
+const files = execFileSync(
+  "git",
+  ["ls-files", "-z", "--cached", "--others", "--exclude-standard"],
+  {
+    cwd: root,
+    encoding: "utf8",
+  },
+)
+  .split("\0")
   .filter(Boolean);
 
 function isAllowedJsComment(raw) {
